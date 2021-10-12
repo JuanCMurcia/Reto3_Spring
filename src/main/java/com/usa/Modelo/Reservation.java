@@ -25,6 +25,11 @@ public class Reservation {
     @JoinColumn(name = "clientId")
     @JsonIgnoreProperties({"reservations","messages"})
     private Client client;
+    
+    @ManyToOne
+    @JoinColumn(name = "skateId")
+    @JsonIgnoreProperties({"reservations","messages"})
+    private Skate skate;
 
     public Integer getIdReservation() {
         return idReservation;

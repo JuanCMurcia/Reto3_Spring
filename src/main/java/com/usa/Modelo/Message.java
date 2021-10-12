@@ -23,6 +23,11 @@ public class Message {
     @JoinColumn(name = "clientId")
     @JsonIgnoreProperties({"messages","reservations"})
     private Client client;
+    
+    @ManyToOne
+    @JoinColumn(name = "skateId")
+    @JsonIgnoreProperties({"messages","reservations"})
+    private Skate skate;
 
     public Integer getIdMessage() {
         return idMessage;
@@ -48,6 +53,13 @@ public class Message {
         this.client = client;
     }
 
-        
+    public Skate getSkate() {
+        return skate;
+    }
+
+    public void setSkate(Skate skate) {
+        this.skate = skate;
+    }
+
     
 }

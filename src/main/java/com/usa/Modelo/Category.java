@@ -56,6 +56,7 @@ public class Category {
     public void setSkate(List<Skate> skate) {
         this.skate = skate;
     }
+
     
     
     
