@@ -22,14 +22,14 @@ public class MessageController {
     @Autowired
     private serviciosMessage servicios;
     
-    @GetMapping("/api")
+    @GetMapping("/all")
     public List<Message> getMessage(){
         return servicios.getAll();
     }
     
     @GetMapping("/{id}")
-    public Optional<Message> getMessage(@PathVariable("id") int idMessage){
-        return servicios.getMessage(idMessage);
+    public Optional<Message> getMessage(@PathVariable("id") int id){
+        return servicios.getMessage(id);
     }
     
     @PostMapping("/save")

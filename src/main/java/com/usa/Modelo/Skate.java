@@ -23,7 +23,7 @@ public class Skate {
     private String description;
     
     @ManyToOne
-    @JoinColumn(name = "idSkate")
+    @JoinColumn(name = "skateId")
     @JsonIgnoreProperties("category")
     private Category category;
 

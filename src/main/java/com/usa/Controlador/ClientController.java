@@ -28,8 +28,8 @@ public class ClientController {
     }
     
     @GetMapping("/{id}")
-    public Optional<Client> getClient(@PathVariable("id") int idClient){
-        return servicios.getClient(idClient);
+    public Optional<Client> getClient(@PathVariable("id") int id){
+        return servicios.getClient(id);
     }
     
     @PostMapping("/save")

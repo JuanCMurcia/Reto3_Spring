@@ -20,8 +20,8 @@ public class Message {
     private String messageText;
 
     @ManyToOne
-    @JoinColumn(name = "client")
-    @JsonIgnoreProperties({"message","reservation"})
+    @JoinColumn(name = "clientId")
+    @JsonIgnoreProperties({"messages","reservations"})
     private Client client;
 
     public Integer getIdMessage() {

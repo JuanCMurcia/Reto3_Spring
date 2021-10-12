@@ -22,8 +22,8 @@ public class Reservation {
     private String status;
 
     @ManyToOne
-    @JoinColumn(name = "Client")
-    @JsonIgnoreProperties({"reservation","message"})
+    @JoinColumn(name = "clientId")
+    @JsonIgnoreProperties({"reservations","messages"})
     private Client client;
 
     public Integer getIdReservation() {
