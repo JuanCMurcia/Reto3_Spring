@@ -20,14 +20,16 @@ public class Message {
     private String messageText;
 
     @ManyToOne
+    @JoinColumn(name = "skateId")
+    @JsonIgnoreProperties({"messages","reservations"})
+    private Skate skate;
+    
+    @ManyToOne
     @JoinColumn(name = "clientId")
     @JsonIgnoreProperties({"messages","reservations"})
     private Client client;
     
-    @ManyToOne
-    @JoinColumn(name = "skateId")
-    @JsonIgnoreProperties({"messages","reservations"})
-    private Skate skate;
+    
 
     public Integer getIdMessage() {
         return idMessage;

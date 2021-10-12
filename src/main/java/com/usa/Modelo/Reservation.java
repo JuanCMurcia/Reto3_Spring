@@ -22,14 +22,16 @@ public class Reservation {
     private String status;
 
     @ManyToOne
+    @JoinColumn(name = "skateId")
+    @JsonIgnoreProperties({"reservations","messages"})
+    private Skate skate;
+    
+    @ManyToOne
     @JoinColumn(name = "clientId")
     @JsonIgnoreProperties({"reservations","messages"})
     private Client client;
     
-    @ManyToOne
-    @JoinColumn(name = "skateId")
-    @JsonIgnoreProperties({"reservations","messages"})
-    private Skate skate;
+    
 
     public Integer getIdReservation() {
         return idReservation;
