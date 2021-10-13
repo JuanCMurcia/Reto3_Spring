@@ -2,6 +2,7 @@
 package com.usa.Modelo;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import java.io.Serializable;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -13,7 +14,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "category")
-public class Category {
+public class Category implements Serializable{
     
     @Id
     @GeneratedValue

@@ -2,6 +2,7 @@
 package com.usa.Modelo;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import java.io.Serializable;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -15,7 +16,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "skate")
-public class Skate {
+public class Skate implements Serializable{
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,15 +28,16 @@ public class Skate {
     
     @ManyToOne
     @JoinColumn(name = "skateId")
-    @JsonIgnoreProperties("category")
+    //@JsonIgnoreProperties("category")
+    @JsonIgnoreProperties("skates")
     private Category category;
 
     @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "skate")
-    @JsonIgnoreProperties("skate")
+    @JsonIgnoreProperties({"skate","client"})
     private List<Message> messages;
     
     @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "skate")
-    @JsonIgnoreProperties("skate")
+    @JsonIgnoreProperties({"skate","client"})
     private List<Reservation> reservations;
 
     public Integer getId() {
@@ -102,5 +104,7 @@ public class Skate {
         this.reservations = reservations;
     }
 
+    
+    
     
 }

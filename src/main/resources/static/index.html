@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda Skates</title>
+    <!--llamado de la libreria Ajax y el jquery-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!--llamado de los Script para las tablas "skate", "client" y "message"-->
+    <script type="text/javascript" src="JS/scriptClient.js"></script>
+    <script type="text/javascript" src="JS/scriptSkate.js"></script>
+    <script type="text/javascript" src="JS/scriptMessage.js"></script>
+    
+    <!--Estilo de la Tabla-->
+    <style>
+        table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+        }
+    </style>
+
+</head>
+<body>
+    <h1>Tienda de Patinetas "SKATES"</h1>
+    <h2>Seccion Skates</h2>
+
+    <!--Creacion del Formulario Skate-->
+ 
+    <input type="number" id="id" placeholder="id"><br>
+    <input type="text" id="brand" placeholder="brand"><br>
+    <input type="number" id="model" placeholder="model"><br>
+    <input type="number" id="category_id" placeholder="category_id"><br>
+    <input type="text" id="name" placeholder="name"><br>
+    <br>
+    <button onclick="agregarSkate()">Agregar!</button>
+
+    <!--Creacion de la tabla de productos skate-->
+    <div>
+        <table>
+            <h2>Lista de Productos Skate</h2>
+            <tbody id="miListaSkate"></tbody>
+        </table>
+    </div>
+    <br>
+    <button onclick="listarSkate()">Listar!</button>
+    <button onclick="actualizar()">Actualizar!</button>
+    <br>
+ 
+    <br>
+    <hr>
+    <br>
+
+ 
+    <!--Seccion Clientes-->
+    <h2>Seccion Cientes</h2>
+
+    <!--Creacion del Formulario Client-->
+    <input type="number" id="id2" placeholder="id"><br>
+    <input type="text" id="name2" placeholder="name"><br>
+    <input type="text" id="email2" placeholder="email"><br>
+    <input type="number" id="age2" placeholder="age"><br>
+    <br>
+    <button onclick="agregarCliente()">Agregar!</button>
+
+    <!--Creacion de la tabla de Clientes-->
+    <div>
+        <table>
+            <h2>Lista de Clientes</h2>
+            <tbody id="miListaClient"></tbody>
+        </table>
+    </div>
+    <br>
+    <button onclick="listarCliente()">Listar!</button>
+    <button onclick="actualizarCliente()">Actualizar!</button>
+    <br>
+  
+    <br>
+    <hr>
+    <br>
+
+    <!--Seccion Mensajes-->
+    <h2>Seccion Mensajes</h2>
+
+    <!--Creacion del Formulario Message-->
+
+    <input type="number" id="id3" placeholder="id"><br>
+    <input type="text" id="messagetext" placeholder="messagetext"><br>
+    <br>
+    <button onclick="agregarMensaje()">Agregar!</button>
+
+    <!--Creacion de la tabla de Clientes-->
+    <div>
+        <table>
+            <h2>Lista de Mensajes</h2>
+            <tbody id="miListaMessage"></tbody>
+        </table>
+    </div>
+    <br>
+    <button onclick="listarMensaje()">Listar!</button>
+    <button onclick="actualizarMensaje()">Actualizar!</button>
+    <br>
+ 
+    <br>
+    <hr>
+    <br>
+ 
+</body>
+</html>
