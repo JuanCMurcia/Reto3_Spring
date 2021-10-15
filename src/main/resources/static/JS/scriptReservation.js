@@ -1,10 +1,9 @@
 //Manejador "POST"
-function agregarSkate(){
+function agregarReservation(){
     let elemento={
-        name:$("#name").val(),
-        brand:$("#brand").val(),
-        year:$("#year").val(),
-        description:$("#description").val()
+        startDate:$("#startDate").val(),
+        devolutionDate:$("#devolutionDate").val(),
+        status:$("#status").val()
         }
 
     let dataToSend = JSON.stringify(elemento);
@@ -12,9 +11,9 @@ function agregarSkate(){
     $.ajax({
         type:"POST",
         contentType: "application/json",
-        url:"http://168.138.247.22:80/api/Skate/save",
+        url:"http://168.138.247.22:80/api/Reservation/save",
         data: dataToSend,
-        datatype:'json',
+        datatype:"json",
         //cache: false,
         //timeout: 600000,
         
@@ -22,13 +21,12 @@ function agregarSkate(){
             console.log(response);
             //Limpiar Campos
             $("#resultado").empty();
-            $("#name").val("");
-            $("#brand").val("");
-            $("#year").val("");
-            $("#description").val("");
+            $("#startDate").val("");
+            $("#devolutionDate").val("");
+            $("#status").val("");
 
             //Listar Tabla
-            listarSkate();
+            listarReservation();
             alert("Se ha guardado Correctamente!")
         },
         error: function(jqXHR, textStatus, errorThrown){}
@@ -37,9 +35,9 @@ function agregarSkate(){
 
 
 //Manejador GET
-function listarSkate(){
+function listarReservation(){
     $.ajax({
-        url:"http://168.138.247.22:80/api/Skate/all",
+        url:"http://168.138.247.22:80/api/Reservation/all",
         type:"GET",
         datatype:"JSON",
         success:function(response){
@@ -48,15 +46,14 @@ function listarSkate(){
                 var misItems=response;
                 for(i=0; i<misItems.length; i++){
                     console.log(misItems[i]);
-                    $("#miListaSkate").append("<tr>");
-                    $("#miListaSkate").append("<td>"+misItems[i].id+"</td>");
-                    $("#miListaSkate").append("<td>"+misItems[i].name+"</td>");
-                    $("#miListaSkate").append("<td>"+misItems[i].brand+"</td>");
-                    $("#miListaSkate").append("<td>"+misItems[i].year+"</td>");
-                    $("#miListaSkate").append("<td>"+misItems[i].description+"</td>");
-                    $("#miListaSkate").append('<td><button class = "botonSkate2" onclick="borrar('+misItems[i].id+')">Borrar Producto!</button></td>');
-                    $("#miListaSkate").append('<td><button class = "botonSkate2" onclick="cargarDatosSkate('+misItems[i].id+')">Cargar Producto!</button></td>');
-                    $("#miListaSkate").append("</tr>");
+                    $("#miListaReservation").append("<tr>");
+                    $("#miListaReservation").append("<td>"+misItems[i].idReservation+"</td>");
+                    $("#miListaReservation").append("<td>"+misItems[i].startDate+"</td>");
+                    $("#miListaReservation").append("<td>"+misItems[i].devolutionDate+"</td>");
+                    $("#miListaReservation").append("<td>"+misItems[i].status+"</td>");
+                    $("#miListaReservation").append('<td><button class = "botonReservation2" onclick="borrarReservation('+misItems[i].id+')">Borrar Producto!</button></td>');
+                    $("#miListaReservation").append('<td><button class = "botonReservation2" onclick="cargarDatosReservation('+misItems[i].id+')">Cargar Producto!</button></td>');
+                    $("#miListaReservation").append("</tr>");
                 }
             }
         },
@@ -65,7 +62,7 @@ function listarSkate(){
 }
 
 //Manejador DELETE
-function borrar(idElemento){
+function borrarReservation(idElemento){
     var elemento={
         id:idElemento
     }
@@ -92,7 +89,7 @@ function borrar(idElemento){
 }
 
 //Capturar informacion para Actualizar
-function cargarDatosSkate(id){
+function cargarDatosReservation(id){
     $.ajax({
         dataType: 'json',
         url:"http://localhost:8080/api/Skate/all/"+id,
@@ -102,11 +99,9 @@ function cargarDatosSkate(id){
           console.log(response);
           var item=response.items[0];
   
-          $("#id").val(item.id);
-          $("#name").val(item.brand);
-          $("#brand").val(item.model);
-          $("#year").val(item.category_id);
-          $("#description").val(item.name);
+          $("#startDate").val(item.startDate);
+          $("#devolutionDate").val(item.devolutionDate);
+          $("#status").val(item.status);
   
         },
         
@@ -117,7 +112,7 @@ function cargarDatosSkate(id){
 }
 
 //Manejador PUT
-function actualizar(){
+function actualizarReservation(){
     var elemento={
         id:$("#id").val(),
         name:$("#name").val(),

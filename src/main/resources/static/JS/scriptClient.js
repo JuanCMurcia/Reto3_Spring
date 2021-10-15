@@ -1,27 +1,27 @@
 //Manejador "POST"
 function agregarCliente(){
-    var elemento={
-        id:$("#id2").val(),
-        name:$("#name2").val(),
-        email:$("#email2").val(),
-        age:$("#age2").val()
+    let elemento={
+        name:$("#name").val(),
+        email:$("#email").val(),
+        age:$("#age").val()
     }
 
-    var dataToSend = JSON.stringify(elemento);
+    let dataToSend = JSON.stringify(elemento);
 
     $.ajax({
         datatype:'json',
-        data:elemento,
-        url:"https://gaf239389c64f9d-patinetas.adb.sa-saopaulo-1.oraclecloudapps.com/ords/admin/client/client",
+        contentType: "application/json",
+        data:dataToSend,
+        url:"http://168.138.247.22:80/api/Client/save",
         type:"POST",
         
         success:function(response){
+            console.log(response);
             //Limpiar Campos
             $("#resultado2").empty();
-            $("#id2").val("");
-            $("#name2").val("");
-            $("#email2").val("");
-            $("#age2").val("");
+            $("#name").val("");
+            $("#email").val("");
+            $("#age").val("");
 
             //Listar Tabla
             listarCliente();
@@ -35,16 +35,17 @@ function agregarCliente(){
 //Manejador GET
 function listarCliente(){
     $.ajax({
-        url:"https://gaf239389c64f9d-patinetas.adb.sa-saopaulo-1.oraclecloudapps.com/ords/admin/client/client",
+        url:"http://168.138.247.22:80/api/Client/all",
         type:"GET",
         datatype:"JSON",
         success:function(response){
             
-            for(i=0; i<response.items.length;i++){
-                var misItems=response.items;
+            for(i=0; i<response.length;i++){
+                var misItems=response;
                 for(i=0; i<misItems.length; i++){
                     console.log(misItems[i]);
                     $("#miListaClient").append("<tr>");
+                    $("#miListaClient").append("<td>"+misItems[i].idClient+"</td>");
                     $("#miListaClient").append("<td>"+misItems[i].name+"</td>");
                     $("#miListaClient").append("<td>"+misItems[i].email+"</td>");
                     $("#miListaClient").append("<td>"+misItems[i].age+"</td>");
@@ -70,7 +71,7 @@ function borrarCliente(idElemento){
         {
             dataType: 'json',
             data:dataToSend,
-            url:"https://gaf239389c64f9d-patinetas.adb.sa-saopaulo-1.oraclecloudapps.com/ords/admin/client/client",
+            url:"https://g4f023f8afe10e5-bdskate.adb.sa-saopaulo-1.oraclecloudapps.com/ords/admin/client/client",
             type:'DELETE',
             contentType:"application/JSON",
             success:function(response){
@@ -89,7 +90,7 @@ function borrarCliente(idElemento){
 function cargarDatosCliente(id){
     $.ajax({
         dataType: 'json',
-        url:"https://gaf239389c64f9d-patinetas.adb.sa-saopaulo-1.oraclecloudapps.com/ords/admin/client/client/"+id,
+        url:"https://g4f023f8afe10e5-bdskate.adb.sa-saopaulo-1.oraclecloudapps.com/ords/admin/client/client/"+id,
         type:'GET',
         
         success:function(response) {
@@ -124,7 +125,7 @@ function actualizarCliente(){
         datatype:'json',
         data:dataToSend,
         contentType:"application/JSON",
-        url:"https://gaf239389c64f9d-patinetas.adb.sa-saopaulo-1.oraclecloudapps.com/ords/admin/client/client",
+        url:"https://g4f023f8afe10e5-bdskate.adb.sa-saopaulo-1.oraclecloudapps.com/ords/admin/client/client",
         type:"PUT",
         
         success:function(response){

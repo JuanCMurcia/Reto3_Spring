@@ -1,0 +1,252 @@
+/*Estilo General*/
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header{
+    width: 100%;
+    box-shadow: 5px 1px 10px #0d3283;
+    
+}
+
+.titulo{
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 30px;
+    color: rgb(207, 217, 226);
+    padding-top: 10px;
+}
+
+.subTitulo{
+    text-align: center;
+    color: #cfe0f1;
+}
+
+/*Linea Divisora*/
+hr{
+    width: 100%;
+    
+}
+
+/*Estilos Menu*/
+.navegacion{
+    width: 1000px;
+    margin: 30px auto;
+    border-radius: 10px;
+    border-color: #0d3283;
+    background: #297ed3;
+    box-shadow: 5px 1px 10px #0d3283;
+}
+
+.navegacion ul{
+    list-style: none;
+}
+
+.menu > li{
+    display: inline-block;
+}
+
+.menu > li > a{
+    display: block;
+    padding: 15px 20px;
+    color: aliceblue;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+}
+
+.menu li a:hover{
+    color: #0d3283;
+    transition: all .3s;
+}
+
+
+/*Estilos Skate*/
+.form-Skate{
+    width: 600px;
+    background: #297ed3;
+    padding: 20px;
+    margin: auto;
+    margin-top: 20px;
+    border-radius: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    box-shadow: 5px 1px 10px #0d3283;
+}
+
+.form-Skate h2{
+    font-size: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.controlSkate{
+    width: 100%;
+    background: #cfe0f1;
+    padding: 5px;
+    border-radius: 4px;
+    margin-top: 5px;
+    margin-bottom: 16px;
+    border: 1px solid #0d3283;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    
+}
+
+.form-Skate .botonSkate{
+    width: 90%;
+    border: 10px;
+    padding: 5px;
+    margin-left: 25px;
+    margin-bottom: 5px;
+    border-radius: 10px;
+    border: 1px solid #0d3283;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+}
+
+.tablaSkate{
+    width: 100%;
+    padding: 2px;
+}
+
+.form-Skate .botonSkate2{
+    width: 100%;
+    border: 5px;
+    padding: 5px;
+    margin-top: 5px;
+    border-radius: 10px;
+    border: 1px solid #0d3283;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+}
+
+
+/*Estilos Clientes*/
+.form-Client{
+    width: 600px;
+    background: #297ed3;
+    padding: 20px;
+    margin: auto;
+    margin-top: 20px;
+    border-radius: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    box-shadow: 5px 1px 10px #0d3283;
+}
+
+.form-Client h2{
+    font-size: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.controlCliente{
+    width: 100%;
+    background: #cfe0f1;
+    padding: 5px;
+    border-radius: 4px;
+    margin-top: 5px;
+    margin-bottom: 16px;
+    border: 1px solid #0d3283;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    
+}
+
+.form-Client .botonCliente{
+    width: 90%;
+    border: 10px;
+    padding: 5px;
+    margin-left: 25px;
+    margin-bottom: 5px;
+    border-radius: 10px;
+    border: 1px solid #0d3283;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+}
+
+.tablaCliente{
+    width: 100%;
+    padding: 2px;
+}
+
+.form-Client .botonCliente2{
+    width: 100%;
+    border: 5px;
+    padding: 5px;
+    margin-top: 5px;
+    border-radius: 10px;
+    border: 1px solid #0d3283;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+}
+
+/*Estilos Message*/
+.form-Message{
+    width: 600px;
+    background: #297ed3;
+    padding: 20px;
+    margin: auto;
+    margin-top: 20px;
+    border-radius: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    box-shadow: 5px 1px 10px #0d3283;
+}
+
+.form-Message h2{
+    font-size: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.controlMessage{
+    width: 100%;
+    background: #cfe0f1;
+    padding: 5px;
+    border-radius: 4px;
+    margin-top: 5px;
+    margin-bottom: 16px;
+    border: 1px solid #0d3283;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    
+}
+
+.form-Message .botonMessage{
+    width: 90%;
+    border: 10px;
+    padding: 5px;
+    margin-left: 25px;
+    margin-bottom: 5px;
+    border-radius: 10px;
+    border: 1px solid #0d3283;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+}
+
+.tablaMessage{
+    width: 100%;
+    padding: 2px;
+}
+
+.form-Message .botonMessage2{
+    width: 100%;
+    border: 5px;
+    padding: 5px;
+    margin-top: 5px;
+    border-radius: 10px;
+    border: 1px solid #0d3283;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+}
+
+/*pie de pagina*/
+.pie{
+    margin-top: 200px;
+}

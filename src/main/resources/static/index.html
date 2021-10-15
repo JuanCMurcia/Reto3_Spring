@@ -8,9 +8,11 @@
     <!--llamado de la libreria Ajax y el jquery-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <!--llamado de los Script para las tablas "skate", "client" y "message"-->
-    <script type="text/javascript" src="JS/scriptClient.js"></script>
-    <script type="text/javascript" src="JS/scriptSkate.js"></script>
-    <script type="text/javascript" src="JS/scriptMessage.js"></script>
+    <script type="text/javascript" src="js/scriptClient.js"></script>
+    <script type="text/javascript" src="js/scriptSkate.js"></script>
+    <script type="text/javascript" src="js/scriptMessage.js"></script>
+    <script type="text/javascript" src="js/scriptCategory.js"></script>
+    <script type="text/javascript" src="js/scriptReservation.js"></script>
     
     <!--Estilo de la Tabla-->
     <style>
@@ -20,90 +22,212 @@
         }
     </style>
 
+    <!--Estilos CSS-->
+    <link rel="stylesheet" href="css/estilos.css">
+    <link rel="stylesheet" href="css/estilos_II.css">
+
 </head>
 <body>
-    <h1>Tienda de Patinetas "SKATES"</h1>
-    <h2>Seccion Skates</h2>
+    
+    <header>
+        <!--Titulo de la tienda-->
+    
+        <nav class="navegacion">
+            <ul class="menu">
+                <h1 class="titulo" id="titulo">TIENDA SKATES</h1>
+                <h2 class="subTitulo">¡Bienvenidos!</h2>
+                <li><a href="#titulo">Home</a></li>
+                <li><a href="#point4">Category</a></li>
+                <li><a href="#point1">Skate</a></li>
+                <li><a href="#point2">Client</a></li>
+                <li><a href="#point3">Message</a></li>
+                <li><a href="#point5">Reservation</a></li>
+            </ul>
+        </nav>
+    </header>
 
-    <!--Creacion del Formulario Skate-->
- 
-    <input type="number" id="id" placeholder="id"><br>
-    <input type="text" id="brand" placeholder="brand"><br>
-    <input type="number" id="model" placeholder="model"><br>
-    <input type="number" id="category_id" placeholder="category_id"><br>
-    <input type="text" id="name" placeholder="name"><br>
-    <br>
-    <button onclick="agregarSkate()">Agregar!</button>
 
-    <!--Creacion de la tabla de productos skate-->
-    <div>
-        <table>
-            <h2>Lista de Productos Skate</h2>
-            <tbody id="miListaSkate"></tbody>
-        </table>
-    </div>
+    <h1 class="espacio"></h1>
+    <!--Seccion Category-->
+    <button id="point4"><a href="#titulo">Home</a></button>
     <br>
-    <button onclick="listarSkate()">Listar!</button>
-    <button onclick="actualizar()">Actualizar!</button>
     <br>
- 
+    <br>
+    <br>
+    <section class="form-Category" id="Category">
+     <h2>! Seccion Categoria ¡</h2>
+     
+     <!--Creacion del Formulario Category-->
+
+     <label >NAME:</label>
+     <input class="controlCategory" type="text" id="name" placeholder="name"><br>
+     <label >DESCRIPTION</label>
+     <input class="controlCategory" type="text" id="description" placeholder="description"><br>
+     <br>
+     <button class="botonCategory" onclick="agregarCategory()">Agregar!</button>
+
+     <!--Creacion de la tabla de productos category-->
+     <div>
+         <table class="tablaCategory">
+             <h2>Lista de Categorias</h2>
+             <tbody id="miListaCategory"></tbody>
+         </table>
+     </div>
+     <br>
+     <button class = "botonCategory" onclick="listarCategory()">Listar!</button>
+     <button class = "botonCategory" onclick="actualizarCategory()">Actualizar!</button>
+     <br>
+    </section>
+    <br>
     <br>
     <hr>
     <br>
 
+
+    <!------------------------------------------------------------------------------------------->
+    <h1 class="espacio"></h1>
+    <!--Seccion  Skates-->
+    <button id="point1"><a href="#titulo">Home</a></button>
+    <br>
+    <br>
+    <br>
+    <br>
+    <section class="form-Skate" id="Skate">
+    <h2>! Seccion Skates "Patinetas" ¡</h2>
+
+    <!--Creacion del Formulario Skate-->
  
+    <label >NAME:</label>
+    <input class="controlSkate" type="text" id="name" placeholder="name"><br>
+    <label >MODEL:</label>
+    <input class="controlSkate" type="text" id="brand" placeholder="brand"><br>
+    <label >YEAR:</label>
+    <input class="controlSkate" type="number" id="year" placeholder="year"><br>
+    <label >NAME:</label>
+    <input class="controlSkate" type="text" id="description" placeholder="description"><br>
+    <br>
+    <button class = "botonSkate" onclick="agregarSkate()">Agregar!</button>
+
+    <!--Creacion de la tabla de productos skate-->
+    <div>
+        <table class = "tablaSkate">
+            <h2>Lista de Skates "Patinetas"</h2>
+            <tbody id="miListaSkate"></tbody>
+        </table>
+    </div>
+    <br>
+    <button class = "botonSkate" onclick="listarSkate()">Listar!</button>
+    <button class = "botonSkate" onclick="actualizar()">Actualizar!</button>
+    <br>
+    </section>
+    <br>
+    <br>
+    <hr>
+    <br>
+
+    <!------------------------------------------------------------------------------------------->
+    <button id="point2"><a href="#titulo">Home</a></button>
+    <br>
+    <br>
+    <br>
+    <br>
+    <section class="form-Client" id="Client">
     <!--Seccion Clientes-->
-    <h2>Seccion Cientes</h2>
+    <h2>! Seccion Cientes ¡</h2>
 
     <!--Creacion del Formulario Client-->
-    <input type="number" id="id2" placeholder="id"><br>
-    <input type="text" id="name2" placeholder="name"><br>
-    <input type="text" id="email2" placeholder="email"><br>
-    <input type="number" id="age2" placeholder="age"><br>
+
+    <label >NAME:</label>
+    <input class="controlCliente" type="text" id="name" placeholder="name"><br>
+    <label >EMAIL:</label>
+    <input class="controlCliente" type="text" id="email" placeholder="email"><br>
+    <label >AGE:</label>
+    <input class="controlCliente" type="number" id="age" placeholder="age"><br>
     <br>
-    <button onclick="agregarCliente()">Agregar!</button>
+    <button class = "botonCliente" onclick="agregarCliente()">Agregar!</button>
 
     <!--Creacion de la tabla de Clientes-->
     <div>
-        <table>
+        <table class="tablaCliente">
             <h2>Lista de Clientes</h2>
             <tbody id="miListaClient"></tbody>
         </table>
     </div>
     <br>
-    <button onclick="listarCliente()">Listar!</button>
-    <button onclick="actualizarCliente()">Actualizar!</button>
+    <button class = "botonCliente" onclick="listarCliente()">Listar!</button>
+    <button class = "botonCliente" onclick="actualizarCliente()">Actualizar!</button>
     <br>
-  
+    </section>
+    <br>
     <br>
     <hr>
     <br>
 
+    <button id="point3"><a href="#titulo">Home</a></button>
+    <br>
+    <br>
+    <br>
+    <br>
+    <section class="form-Message" id="Message">
     <!--Seccion Mensajes-->
-    <h2>Seccion Mensajes</h2>
+    <h2>! Seccion Mensajes ¡</h2>
 
     <!--Creacion del Formulario Message-->
 
-    <input type="number" id="id3" placeholder="id"><br>
-    <input type="text" id="messagetext" placeholder="messagetext"><br>
+    <label >NAME:</label>
+    <input class="controlMessage" type="text" id="messageText" placeholder="messageText"><br>
     <br>
-    <button onclick="agregarMensaje()">Agregar!</button>
+    <button class = "botonMessage" onclick="agregarMensaje()">Agregar!</button>
 
-    <!--Creacion de la tabla de Clientes-->
+    <!--Creacion de la tabla de Client-->
     <div>
-        <table>
+        <table class="tablaMessage">
             <h2>Lista de Mensajes</h2>
             <tbody id="miListaMessage"></tbody>
         </table>
     </div>
     <br>
-    <button onclick="listarMensaje()">Listar!</button>
-    <button onclick="actualizarMensaje()">Actualizar!</button>
+    <button class = "botonMessage" onclick="listarMensaje()">Listar!</button>
+    <button class = "botonMessage" onclick="actualizarMensaje()">Actualizar!</button>
     <br>
- 
+    </section>
+    <br>
     <br>
     <hr>
     <br>
+
+    <button id="point5"><a href="#titulo">Home</a></button>
+    <br>
+    <br>
+    <br>
+    <br>
+    <section class="form-Reservation" id="Reservation">
+    <!--Seccion Reservaciones-->  
+    <h2>! Seccion Reservaciones ¡</h2>  
+
+    <!--Creacion del Formulario Reservation-->
  
+    <label >STARTDATE:</label>
+    <input class="controlReservation" type="date" id="startDate" placeholder="startDate"><br>
+    <label >DEVOLUTIONDATE:</label>
+    <input class="controlReservation" type="date" id="devolutionDate" placeholder="devolutionDate"><br>
+    <label >STATUS:</label>
+    <input class="controlReservation" type="text" id="status" placeholder="status">
+    <br>
+    <button class = "botonReservation" onclick="agregarReservation()">Agregar!</button>
+
+    <!--Creacion de la tabla de Reservations-->
+    <div>
+        <table class="tablaReservation">
+            <h2>Lista de Reservaciones</h2>
+            <tbody id="miListaReservation"></tbody>
+        </table>
+    </div>
+    <br>
+    <button class="botonReservation" onclick="listarReservation()">Listar!</button>
+    <button class="botonReservation" onclick="actualizarReservation()">Actualizar!</button>
+    <br>
+    </section>
+    <h1 class="pie"></h1>
 </body>
 </html>

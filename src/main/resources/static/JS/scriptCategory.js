@@ -1,9 +1,7 @@
 //Manejador "POST"
-function agregarSkate(){
+function agregarCategory(){
     let elemento={
         name:$("#name").val(),
-        brand:$("#brand").val(),
-        year:$("#year").val(),
         description:$("#description").val()
         }
 
@@ -12,9 +10,9 @@ function agregarSkate(){
     $.ajax({
         type:"POST",
         contentType: "application/json",
-        url:"http://168.138.247.22:80/api/Skate/save",
+        url:"http://168.138.247.22:80/api/Category/save",
         data: dataToSend,
-        datatype:'json',
+        datatype:"json",
         //cache: false,
         //timeout: 600000,
         
@@ -23,12 +21,10 @@ function agregarSkate(){
             //Limpiar Campos
             $("#resultado").empty();
             $("#name").val("");
-            $("#brand").val("");
-            $("#year").val("");
             $("#description").val("");
 
             //Listar Tabla
-            listarSkate();
+            listarCategory();
             alert("Se ha guardado Correctamente!")
         },
         error: function(jqXHR, textStatus, errorThrown){}
@@ -37,9 +33,9 @@ function agregarSkate(){
 
 
 //Manejador GET
-function listarSkate(){
+function listarCategory(){
     $.ajax({
-        url:"http://168.138.247.22:80/api/Skate/all",
+        url:"http://168.138.247.22:80/api/Category/all",
         type:"GET",
         datatype:"JSON",
         success:function(response){
@@ -48,15 +44,13 @@ function listarSkate(){
                 var misItems=response;
                 for(i=0; i<misItems.length; i++){
                     console.log(misItems[i]);
-                    $("#miListaSkate").append("<tr>");
-                    $("#miListaSkate").append("<td>"+misItems[i].id+"</td>");
-                    $("#miListaSkate").append("<td>"+misItems[i].name+"</td>");
-                    $("#miListaSkate").append("<td>"+misItems[i].brand+"</td>");
-                    $("#miListaSkate").append("<td>"+misItems[i].year+"</td>");
-                    $("#miListaSkate").append("<td>"+misItems[i].description+"</td>");
-                    $("#miListaSkate").append('<td><button class = "botonSkate2" onclick="borrar('+misItems[i].id+')">Borrar Producto!</button></td>');
-                    $("#miListaSkate").append('<td><button class = "botonSkate2" onclick="cargarDatosSkate('+misItems[i].id+')">Cargar Producto!</button></td>');
-                    $("#miListaSkate").append("</tr>");
+                    $("#miListaCategory").append("<tr>");
+                    $("#miListaCategory").append("<td>"+misItems[i].id+"</td>");
+                    $("#miListaCategory").append("<td>"+misItems[i].name+"</td>");
+                    $("#miListaCategory").append("<td>"+misItems[i].description+"</td>");
+                    $("#miListaCategory").append('<td><button class = "botonCategory2" onclick="borrarCategory('+misItems[i].id+')">Borrar Producto!</button></td>');
+                    $("#miListaCategory").append('<td><button class = "botonCategory2" onclick="cargarDatosCategory('+misItems[i].id+')">Cargar Producto!</button></td>');
+                    $("#miListaCategory").append("</tr>");
                 }
             }
         },
@@ -65,7 +59,7 @@ function listarSkate(){
 }
 
 //Manejador DELETE
-function borrar(idElemento){
+function borrarCategory(idElemento){
     var elemento={
         id:idElemento
     }
@@ -81,7 +75,7 @@ function borrar(idElemento){
             contentType:"application/JSON",
             success:function(response){
                 $("#miListaSkate").empty();
-                listarSkate();
+                listarcategory();
                 alert("se ha Eliminado Correctamente!")
             },
 
@@ -92,7 +86,7 @@ function borrar(idElemento){
 }
 
 //Capturar informacion para Actualizar
-function cargarDatosSkate(id){
+function cargarDatosCategory(id){
     $.ajax({
         dataType: 'json',
         url:"http://localhost:8080/api/Skate/all/"+id,
@@ -103,10 +97,8 @@ function cargarDatosSkate(id){
           var item=response.items[0];
   
           $("#id").val(item.id);
-          $("#name").val(item.brand);
-          $("#brand").val(item.model);
-          $("#year").val(item.category_id);
-          $("#description").val(item.name);
+          $("#name4").val(item.name);
+          $("#description4").val(item.description);
   
         },
         
@@ -117,7 +109,7 @@ function cargarDatosSkate(id){
 }
 
 //Manejador PUT
-function actualizar(){
+function actualizarCategory(){
     var elemento={
         id:$("#id").val(),
         name:$("#name").val(),
