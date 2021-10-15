@@ -11,7 +11,7 @@ function agregarReservation(){
     $.ajax({
         type:"POST",
         contentType: "application/json",
-        url:"http://168.138.247.22:80/api/Reservation/save",
+        url:"http://168.138.247.22/api/Reservation/save",
         data: dataToSend,
         datatype:"json",
         //cache: false,
@@ -37,7 +37,7 @@ function agregarReservation(){
 //Manejador GET
 function listarReservation(){
     $.ajax({
-        url:"http://168.138.247.22:80/api/Reservation/all",
+        url:"http://168.138.247.22/api/Reservation/all",
         type:"GET",
         datatype:"JSON",
         success:function(response){

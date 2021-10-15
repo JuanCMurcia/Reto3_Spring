@@ -10,7 +10,7 @@ function agregarCategory(){
     $.ajax({
         type:"POST",
         contentType: "application/json",
-        url:"http://168.138.247.22:80/api/Category/save",
+        url:"http://168.138.247.22/api/Category/save",
         data: dataToSend,
         datatype:"json",
         //cache: false,
@@ -35,7 +35,7 @@ function agregarCategory(){
 //Manejador GET
 function listarCategory(){
     $.ajax({
-        url:"http://168.138.247.22:80/api/Category/all",
+        url:"http://168.138.247.22/api/Category/all",
         type:"GET",
         datatype:"JSON",
         success:function(response){

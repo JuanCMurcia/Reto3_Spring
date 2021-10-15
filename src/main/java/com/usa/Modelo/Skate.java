@@ -1,6 +1,11 @@
 
 package com.usa.Modelo;
 
+/**
+ *  Autor : Juan Carlos Murcia Calderon
+ *  Grupo : G22
+ */
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 import java.util.List;
@@ -16,8 +21,13 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "skate")
+/**
+ * Clase Patinetas "Skate"
+ */
 public class Skate implements Serializable{
-    
+    /**
+     * Declaracion de Variables
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -26,20 +36,33 @@ public class Skate implements Serializable{
     private Integer year;
     private String description;
     
+    /**
+     * Relacion con la Tabla "Category"
+     */
     @ManyToOne
     @JoinColumn(name = "skateId")
     //@JsonIgnoreProperties("category")
     @JsonIgnoreProperties("skates")
     private Category category;
 
+    /**
+     * Relacion con la Tabla "Message"
+     */
     @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "skate")
     @JsonIgnoreProperties({"skate","client"})
     private List<Message> messages;
     
+    /**
+     * Relacion con la tabla "Reservation
+     */
     @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "skate")
     @JsonIgnoreProperties({"skate","client"})
     private List<Reservation> reservations;
 
+    /**
+     * Creacion de los Getter and Setter
+     * @return 
+     */
     public Integer getId() {
         return id;
     }
@@ -104,7 +127,4 @@ public class Skate implements Serializable{
         this.reservations = reservations;
     }
 
-    
-    
-    
 }

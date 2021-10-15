@@ -12,7 +12,7 @@ function agregarSkate(){
     $.ajax({
         type:"POST",
         contentType: "application/json",
-        url:"http://168.138.247.22:80/api/Skate/save",
+        url:"http://168.138.247.22/api/Skate/save",
         data: dataToSend,
         datatype:'json',
         //cache: false,
@@ -39,7 +39,7 @@ function agregarSkate(){
 //Manejador GET
 function listarSkate(){
     $.ajax({
-        url:"http://168.138.247.22:80/api/Skate/all",
+        url:"http://168.138.247.22/api/Skate/all",
         type:"GET",
         datatype:"JSON",
         success:function(response){
