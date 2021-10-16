@@ -10,7 +10,7 @@ function agregarMensaje(){
         datatype:'json',
         contentType: "application/json",
         data:dataToSend,
-        url:"http://168.138.247.22/api/Message/save",
+        url:"http://168.138.247.22:80/api/Message/save",
         type:"POST",
         
         success:function(response){
@@ -31,7 +31,7 @@ function agregarMensaje(){
 //Manejador GET
 function listarMensaje(){
     $.ajax({
-        url:"http://168.138.247.22/api/Message/all",
+        url:"http://168.138.247.22:80/api/Message/all",
         type:"GET",
         datatype:"JSON",
         success:function(response){

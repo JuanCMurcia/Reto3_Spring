@@ -12,7 +12,7 @@ function agregarCliente(){
         datatype:'json',
         contentType: "application/json",
         data:dataToSend,
-        url:"http://168.138.247.22/api/Client/save",
+        url:"http://168.138.247.22:80/api/Client/save",
         type:"POST",
         
         success:function(response){
@@ -35,7 +35,7 @@ function agregarCliente(){
 //Manejador GET
 function listarCliente(){
     $.ajax({
-        url:"http://168.138.247.22/api/Client/all",
+        url:"http://168.138.247.22:80/api/Client/all",
         type:"GET",
         datatype:"JSON",
         success:function(response){
