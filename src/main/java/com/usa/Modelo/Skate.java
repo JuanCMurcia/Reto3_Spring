@@ -41,7 +41,6 @@ public class Skate implements Serializable{
      */
     @ManyToOne
     @JoinColumn(name = "skateId")
-    //@JsonIgnoreProperties("category")
     @JsonIgnoreProperties("skates")
     private Category category;
 
