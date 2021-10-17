@@ -1,10 +1,10 @@
 //Manejador "POST"
 function agregarSkate(){
     let elemento={
-        name:$("#name").val(),
+        name:$("#name2").val(),
         brand:$("#brand").val(),
         year:$("#year").val(),
-        description:$("#description").val()
+        description:$("#description2").val()
         }
 
     let dataToSend = JSON.stringify(elemento);
@@ -22,10 +22,10 @@ function agregarSkate(){
             console.log(response);
             //Limpiar Campos
             $("#resultado").empty();
-            $("#name").val("");
+            $("#name2").val("");
             $("#brand").val("");
             $("#year").val("");
-            $("#description").val("");
+            $("#description2").val("");
 
             //Listar Tabla
             listarSkate();

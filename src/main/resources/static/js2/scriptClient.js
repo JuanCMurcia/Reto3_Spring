@@ -1,7 +1,7 @@
 //Manejador "POST"
 function agregarCliente(){
     let elemento={
-        name:$("#name").val(),
+        name:$("#name3").val(),
         email:$("#email").val(),
         age:$("#age").val()
     }
@@ -19,7 +19,7 @@ function agregarCliente(){
             console.log(response);
             //Limpiar Campos
             $("#resultado2").empty();
-            $("#name").val("");
+            $("#name3").val("");
             $("#email").val("");
             $("#age").val("");
 
