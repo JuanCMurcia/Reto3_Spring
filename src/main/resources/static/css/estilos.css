@@ -2,26 +2,67 @@
 *{
     margin: 0;
     padding: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
     box-sizing: border-box;
 }
 
-header{
+body{
+    background: #d4d4d4;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.wrap{
+    width: 800px;
+    max-width: 90%;
+    margin: 20px auto;
+}
+
+ul.tabs{
     width: 100%;
-    box-shadow: 5px 1px 10px #0d3283;
+    background: #363636;
+    list-style: none;
+    display: flex;
+}
+
+ul.tabs li{
+    width: 18%;
+}
+
+ul.tabs li a{
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    text-align: center;
+    display: block;
+    padding: 20px 0px;
+}
+
+.active{
+    background: #0984cc;
+}
+
+ul.tabs li a .tab-text{
+    margin-left: 8px;
+}
+
+.tabs-container{
+    width: 100%;
+    background: white;
+}
+
+.tabs-container section{
+    padding: 20px;
+}
+
+.form-Inicio h2{
+    text-align: center;
     
 }
 
-.titulo{
-    text-align: center;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 30px;
-    color: rgb(207, 217, 226);
-    padding-top: 10px;
-}
-
-.subTitulo{
-    text-align: center;
-    color: #cfe0f1;
+.form-Inicio img{
+    margin: auto;
+    display: block;
 }
 
 /*Linea Divisora*/
@@ -30,41 +71,10 @@ hr{
     
 }
 
-/*Estilos Menu*/
-.navegacion{
-    width: 1000px;
-    margin: 30px auto;
-    border-radius: 10px;
-    border-color: #0d3283;
-    background: #297ed3;
-    box-shadow: 5px 1px 10px #0d3283;
-}
-
-.navegacion ul{
-    list-style: none;
-}
-
-.menu > li{
-    display: inline-block;
-}
-
-.menu > li > a{
-    display: block;
-    padding: 15px 20px;
-    color: aliceblue;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 20px;
-}
-
-.menu li a:hover{
-    color: #0d3283;
-    transition: all .3s;
-}
-
 
 /*Estilos Skate*/
 .form-Skate{
-    width: 600px;
+    width: 800px;
     background: #297ed3;
     padding: 20px;
     margin: auto;
@@ -109,24 +119,27 @@ hr{
 
 .tablaSkate{
     width: 100%;
-    padding: 2px;
+    padding: 5px;
+}
+
+#miListaSkate{
+    padding: 5px;
 }
 
 .form-Skate .botonSkate2{
-    width: 100%;
-    border: 5px;
+    width: 60%;
     padding: 5px;
-    margin-top: 5px;
+    margin: 5px;
     border-radius: 10px;
     border: 1px solid #0d3283;
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 15px;
+    font-size: 12px;
 }
 
 
 /*Estilos Clientes*/
 .form-Client{
-    width: 600px;
+    width: 800px;
     background: #297ed3;
     padding: 20px;
     margin: auto;
@@ -187,7 +200,7 @@ hr{
 
 /*Estilos Message*/
 .form-Message{
-    width: 600px;
+    width: 800px;
     background: #297ed3;
     padding: 20px;
     margin: auto;
@@ -246,7 +259,3 @@ hr{
     font-size: 15px;
 }
 
-/*pie de pagina*/
-.pie{
-    margin-top: 200px;
-}

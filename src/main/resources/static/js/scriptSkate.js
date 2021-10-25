@@ -4,34 +4,38 @@ function agregarSkate(){
         name:$("#name2").val(),
         brand:$("#brand").val(),
         year:$("#year").val(),
-        description:$("#description2").val()
+        description:$("#description2").val(),
+        category:{id:+$("#selectCategory").val()}
         }
 
     let dataToSend = JSON.stringify(elemento);
+    console.log(elemento);
 
     $.ajax({
         type:"POST",
         contentType: "application/json",
         url:"http://168.138.247.22:80/api/Skate/save",
+        //url:"http://localhost:8080/api/Skate/save",
         data: dataToSend,
         datatype:'json',
-        //cache: false,
-        //timeout: 600000,
-        
+                
         success:function(response){
             console.log(response);
+            console.log("Se guardo Correctamente");
             //Limpiar Campos
-            $("#resultado").empty();
+            $("#resultado2").empty();
             $("#name2").val("");
             $("#brand").val("");
             $("#year").val("");
             $("#description2").val("");
 
             //Listar Tabla
-            listarSkate();
+            
             alert("Se ha guardado Correctamente!")
         },
-        error: function(jqXHR, textStatus, errorThrown){}
+        error: function(jqXHR, textStatus, errorThrown){
+            alert("No se Guardo Correctamente")
+        }
     });
 }
 
@@ -40,6 +44,7 @@ function agregarSkate(){
 function listarSkate(){
     $.ajax({
         url:"http://168.138.247.22:80/api/Skate/all",
+        //url:"http://localhost:8080/api/Skate/all",
         type:"GET",
         datatype:"JSON",
         success:function(response){
@@ -49,13 +54,14 @@ function listarSkate(){
                 for(i=0; i<misItems.length; i++){
                     console.log(misItems[i]);
                     $("#miListaSkate").append("<tr>");
-                    $("#miListaSkate").append("<td>"+misItems[i].id+"</td>");
                     $("#miListaSkate").append("<td>"+misItems[i].name+"</td>");
                     $("#miListaSkate").append("<td>"+misItems[i].brand+"</td>");
                     $("#miListaSkate").append("<td>"+misItems[i].year+"</td>");
                     $("#miListaSkate").append("<td>"+misItems[i].description+"</td>");
+                    //$("#miListaSkate").append("<td>"+misItems[i].category.name+"</td>");
                     $("#miListaSkate").append('<td><button class = "botonSkate2" onclick="borrar('+misItems[i].id+')">Borrar Producto!</button></td>');
                     $("#miListaSkate").append('<td><button class = "botonSkate2" onclick="cargarDatosSkate('+misItems[i].id+')">Cargar Producto!</button></td>');
+                    $("#miListaSkate").append('<td><button class = "botonSkate2" onclick="actualizar('+misItems[i].id+')">Actualizar Producto!</button></td>');
                     $("#miListaSkate").append("</tr>");
                 }
             }
@@ -76,10 +82,12 @@ function borrar(idElemento){
         {
             dataType: 'json',
             data:dataToSend,
-            url:"http://localhost:8080/api/Skate/all",
+            url:"http://168.138.247.22:80/api/Skate/all/"+idElemento,
+            //url:"http://localhost:8080/api/Skate/"+idElemento,
             type:'DELETE',
             contentType:"application/JSON",
             success:function(response){
+                console.log(response);
                 $("#miListaSkate").empty();
                 listarSkate();
                 alert("se ha Eliminado Correctamente!")
@@ -95,18 +103,19 @@ function borrar(idElemento){
 function cargarDatosSkate(id){
     $.ajax({
         dataType: 'json',
-        url:"http://localhost:8080/api/Skate/all/"+id,
+        url:"http://168.138.247.22:80/api/Skate/all/"+id,
+        //url:"http://localhost:8080/api/Skate/"+id,
         type:'GET',
         
         success:function(response) {
           console.log(response);
-          var item=response.items[0];
+          var item=response;
   
           $("#id").val(item.id);
-          $("#name").val(item.brand);
-          $("#brand").val(item.model);
-          $("#year").val(item.category_id);
-          $("#description").val(item.name);
+          $("#name2").val(item.name);
+          $("#brand").val(item.brand);
+          $("#year").val(item.year);
+          $("#description2").val(item.description);
   
         },
         
@@ -117,39 +126,62 @@ function cargarDatosSkate(id){
 }
 
 //Manejador PUT
-function actualizar(){
+function actualizar(idElemento){
     var elemento={
-        id:$("#id").val(),
-        name:$("#name").val(),
+        id:idElemento,
+        name:$("#name2").val(),
         brand:$("#brand").val(),
         year:$("#year").val(),
-        description:$("#description").val()
+        description:$("#description2").val()
     }
 
+    console.log(elemento);
     var dataToSend = JSON.stringify(elemento);
 
     $.ajax({
         datatype:'json',
         data:dataToSend,
         contentType:"application/JSON",
-        url:"http://localhost:8080/api/Skate/all",
+        url:"http://168.138.247.22:80/api/Skate/update",
+        //url:"http://localhost:8080/api/Skate/update",
         type:"PUT",
         
         success:function(response){
+            console.log(response);
             $("#miListaSkate").empty();
             listarSkate();
             alert("se ha Actualizado Correctamente!")
 
             //Limpiar Campos
-            $("#resultado").empty();
+            $("#resultado2").empty();
             $("#id").val("");
-            $("#name").val("");
+            $("#name2").val("");
             $("#brand").val("");
             $("#year").val("");
-            $("#description").val("");
+            $("#description2").val("");
             
 
         },
         error: function(jqXHR, textStatus, errorThrown){}
     });
+}
+
+function autoInicioSkate(){
+    console.log("Se esta ejecutando el autoinicio de Skate...");
+    $.ajax({
+        url:"http://168.138.247.22:80/api/Skate/all",
+        //url:"http://localhost:8080/api/Skate/all",
+        type:"GET",
+        datatype:"JSON",
+        success:function(response){
+                      
+            let $select = $("#selectSkate");
+            $.each(response,function(id,name){
+                $select.append('<option value='+ name.id + '>' + name.name + '</option>');
+                console.log("select " + name.id);
+            });
+
+        },
+        error: function(jqXHR, textStatus, errorThrown){}
+        });
 }

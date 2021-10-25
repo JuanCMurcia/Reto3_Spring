@@ -1,7 +1,7 @@
 
 /*Estilos Category*/
 .form-Category{
-    width: 600px;
+    width: 800px;
     background: #297ed3;
     padding: 20px;
     margin: auto;
@@ -46,24 +46,29 @@
 
 .tablaCategory{
     width: 100%;
-    padding: 2px;
+    padding: 5px;
+    
+}
+
+#miListaCategory{
+    padding: 5px;
 }
 
 .form-Category .botonCategory2{
-    width: 100%;
-    border: 5px;
+    width: 60%;
     padding: 5px;
-    margin-top: 5px;
+    margin: 5px;
+    
     border-radius: 10px;
     border: 1px solid #0d3283;
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 15px;
+    font-size: 12px;
 }
 
 
 /*Estilos Reservation*/
 .form-Reservation{
-    width: 600px;
+    width: 800px;
     background: #297ed3;
     padding: 20px;
     margin: auto;

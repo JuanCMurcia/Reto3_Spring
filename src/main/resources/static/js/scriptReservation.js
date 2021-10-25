@@ -12,6 +12,7 @@ function agregarReservation(){
         type:"POST",
         contentType: "application/json",
         url:"http://168.138.247.22:80/api/Reservation/save",
+        //url:"http://localhost:8080/api/Reservation/save",
         data: dataToSend,
         datatype:"json",
         //cache: false,
@@ -20,7 +21,7 @@ function agregarReservation(){
         success:function(response){
             console.log(response);
             //Limpiar Campos
-            $("#resultado").empty();
+            $("#resultado5").empty();
             $("#startDate").val("");
             $("#devolutionDate").val("");
             $("#status").val("");
@@ -38,6 +39,7 @@ function agregarReservation(){
 function listarReservation(){
     $.ajax({
         url:"http://168.138.247.22:80/api/Reservation/all",
+        //url:"http://localhost:8080/api/Reservation/all",
         type:"GET",
         datatype:"JSON",
         success:function(response){
@@ -47,12 +49,13 @@ function listarReservation(){
                 for(i=0; i<misItems.length; i++){
                     console.log(misItems[i]);
                     $("#miListaReservation").append("<tr>");
-                    $("#miListaReservation").append("<td>"+misItems[i].idReservation+"</td>");
+                    //$("#miListaReservation").append("<td>"+misItems[i].idReservation+"</td>");
                     $("#miListaReservation").append("<td>"+misItems[i].startDate+"</td>");
                     $("#miListaReservation").append("<td>"+misItems[i].devolutionDate+"</td>");
                     $("#miListaReservation").append("<td>"+misItems[i].status+"</td>");
-                    $("#miListaReservation").append('<td><button class = "botonReservation2" onclick="borrarReservation('+misItems[i].id+')">Borrar Producto!</button></td>');
-                    $("#miListaReservation").append('<td><button class = "botonReservation2" onclick="cargarDatosReservation('+misItems[i].id+')">Cargar Producto!</button></td>');
+                    $("#miListaReservation").append('<td><button class = "botonReservation2" onclick="borrarReservation('+misItems[i].idReservation+')">Borrar Producto!</button></td>');
+                    $("#miListaReservation").append('<td><button class = "botonReservation2" onclick="cargarDatosReservation('+misItems[i].idReservation+')">Editar Producto!</button></td>');
+                    $("#miListaReservation").append('<td><button class = "botonReservation2" onclick="actualizarReservation('+misItems[i].idReservation+')">Actualizar Producto!</button></td>');
                     $("#miListaReservation").append("</tr>");
                 }
             }
@@ -63,22 +66,24 @@ function listarReservation(){
 
 //Manejador DELETE
 function borrarReservation(idElemento){
-    var elemento={
+    let elemento={
         id:idElemento
     }
 
-    var dataToSend = JSON.stringify(elemento);
+    let dataToSend = JSON.stringify(elemento);
 
     $.ajax(
         {
             dataType: 'json',
             data:dataToSend,
-            url:"http://localhost:8080/api/Skate/all",
+            url:"http://168.138.247.22:80/api/Reservation/"+idElemento,
+            //url:"http://localhost:8080/api/Reservation/"+idElemento,
             type:'DELETE',
             contentType:"application/JSON",
             success:function(response){
-                $("#miListaSkate").empty();
-                listarSkate();
+                console.log(response);
+                $("#miListaReservation").empty();
+                listarReservation();
                 alert("se ha Eliminado Correctamente!")
             },
 
@@ -92,12 +97,13 @@ function borrarReservation(idElemento){
 function cargarDatosReservation(id){
     $.ajax({
         dataType: 'json',
-        url:"http://localhost:8080/api/Skate/all/"+id,
+        url:"http://168.138.247.22:80/api/Reservation/"+id,
+        //url:"http://localhost:8080/api/Reservation/"+id,
         type:'GET',
         
         success:function(response) {
           console.log(response);
-          var item=response.items[0];
+          var item=response;
   
           $("#startDate").val(item.startDate);
           $("#devolutionDate").val(item.devolutionDate);
@@ -112,13 +118,12 @@ function cargarDatosReservation(id){
 }
 
 //Manejador PUT
-function actualizarReservation(){
+function actualizarReservation(idElemento){
     var elemento={
-        id:$("#id").val(),
-        name:$("#name").val(),
-        brand:$("#brand").val(),
-        year:$("#year").val(),
-        description:$("#description").val()
+        idReservation:idElemento,
+        startDate:$("#startDate").val(),
+        devolutionDate:$("#devolutionDate").val(),
+        status:$("#status").val(),
     }
 
     var dataToSend = JSON.stringify(elemento);
@@ -127,22 +132,21 @@ function actualizarReservation(){
         datatype:'json',
         data:dataToSend,
         contentType:"application/JSON",
-        url:"http://localhost:8080/api/Skate/all",
+        url:"http://168.138.247.22:80/api/Reservation/update",
+        //url:"http://localhost:8080/api/Reservation/update",
         type:"PUT",
         
         success:function(response){
-            $("#miListaSkate").empty();
-            listarSkate();
+            console.log(response);
+            $("#miListaReservation").empty();
             alert("se ha Actualizado Correctamente!")
 
             //Limpiar Campos
-            $("#resultado").empty();
-            $("#id").val("");
-            $("#name").val("");
-            $("#brand").val("");
-            $("#year").val("");
-            $("#description").val("");
-            
+            $("#resultado5").empty();
+  
+            $("#startDate").val("");
+            $("#devolutionDate").val("");
+            $("#status").val("");
 
         },
         error: function(jqXHR, textStatus, errorThrown){}

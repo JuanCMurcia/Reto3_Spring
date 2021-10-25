@@ -34,4 +34,38 @@ public class serviciosClient {
             }
         }
     }
+    
+    public Client update(Client client){
+        if (client.getIdClient()!=null){
+            Optional<Client> evt = metodosCrud.getClient(client.getIdClient());
+            if (!evt.isEmpty()){
+                if (client.getEmail()!=null){
+                    evt.get().setEmail(client.getEmail());
+                }
+                if (client.getPassword()!=null){
+                    evt.get().setPassword(client.getPassword());
+                }
+                if (client.getName()!=null){
+                    evt.get().setName(client.getName());
+                }
+                if (client.getAge()!=null){
+                    evt.get().setAge(client.getAge());
+                }
+                metodosCrud.save(evt.get());
+                return evt.get();
+            }else {
+                return client;
+            }
+        }else {
+            return client;
+        }
+    }
+
+    public boolean deleteClient(int id){
+        Boolean del = getClient(id).map(client -> {
+            metodosCrud.delete(client);
+            return true;
+        }).orElse(false);
+        return del;
+    }
 }

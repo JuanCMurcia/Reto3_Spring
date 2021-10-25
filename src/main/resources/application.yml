@@ -1,0 +1,11 @@
+## YAML Template.
+---
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          github:
+            clientId: 3737bc039d253d728996
+            clientSecret: 6f801c0e5e58ac04b91836cb0b4882fa97722d2f
+# ...

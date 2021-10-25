@@ -13,12 +13,13 @@ function agregarCliente(){
         contentType: "application/json",
         data:dataToSend,
         url:"http://168.138.247.22:80/api/Client/save",
+        //url:"http://localhost:8080/api/Client/save",
         type:"POST",
         
         success:function(response){
             console.log(response);
             //Limpiar Campos
-            $("#resultado2").empty();
+            $("#resultado3").empty();
             $("#name3").val("");
             $("#email").val("");
             $("#age").val("");
@@ -36,21 +37,23 @@ function agregarCliente(){
 function listarCliente(){
     $.ajax({
         url:"http://168.138.247.22:80/api/Client/all",
+        //url:"http://localhost:8080/api/Client/all",
         type:"GET",
         datatype:"JSON",
         success:function(response){
-            
+                        
             for(i=0; i<response.length;i++){
                 var misItems=response;
                 for(i=0; i<misItems.length; i++){
                     console.log(misItems[i]);
                     $("#miListaClient").append("<tr>");
-                    $("#miListaClient").append("<td>"+misItems[i].idClient+"</td>");
+                    //$("#miListaClient").append("<td>"+misItems[i].idClient+"</td>");
                     $("#miListaClient").append("<td>"+misItems[i].name+"</td>");
                     $("#miListaClient").append("<td>"+misItems[i].email+"</td>");
                     $("#miListaClient").append("<td>"+misItems[i].age+"</td>");
-                    $("#miListaClient").append('<td><button class = "botonCliente2" onclick="borrarCliente('+misItems[i].id+')">Borrar Cliente!</button></td>');
-                    $("#miListaClient").append('<td><button class = "botonCliente2" onclick="cargarDatosCliente('+misItems[i].id+')">Cargar Cliente!</button></td>');
+                    $("#miListaClient").append('<td><button class = "botonCliente2" onclick="borrarCliente('+misItems[i].idClient+')">Borrar Cliente!</button></td>');
+                    $("#miListaClient").append('<td><button class = "botonCliente2" onclick="cargarDatosCliente('+misItems[i].idClient+')">Editar Cliente!</button></td>');
+                    $("#miListaClient").append('<td><button class = "botonCliente2" onclick="actualizarCliente('+misItems[i].idClient+')">Actualizar Cliente!</button></td>');
                     $("#miListaClient").append("</tr>");
                 }
             }
@@ -61,22 +64,24 @@ function listarCliente(){
 
 //Manejador DELETE
 function borrarCliente(idElemento){
-    var elemento={
+    let elemento={
         id:idElemento
     }
 
-    var dataToSend = JSON.stringify(elemento);
+    let dataToSend = JSON.stringify(elemento);
 
     $.ajax(
         {
             dataType: 'json',
             data:dataToSend,
-            url:"https://g4f023f8afe10e5-bdskate.adb.sa-saopaulo-1.oraclecloudapps.com/ords/admin/client/client",
+            url:"http://168.138.247.22:80/api/Client/"+idElemento,
+            //url:"http://localhost:8080/api/Client/"+idElemento,
             type:'DELETE',
-            contentType:"application/JSON",
+            contentType:"application/json",
             success:function(response){
+                console.log(response);
                 $("#miListaClient").empty();
-                listarCliente();
+                //listarCliente();
                 alert("se ha Eliminado Correctamente!")
             },
 
@@ -90,17 +95,17 @@ function borrarCliente(idElemento){
 function cargarDatosCliente(id){
     $.ajax({
         dataType: 'json',
-        url:"https://g4f023f8afe10e5-bdskate.adb.sa-saopaulo-1.oraclecloudapps.com/ords/admin/client/client/"+id,
+        url:"http://168.138.247.22:80/api/Client/"+id,
+        //url:"http://localhost:8080/api/Client/"+id,
         type:'GET',
         
         success:function(response) {
           console.log(response);
-          var item=response.items[0];
+          var item=response;
   
-          $("#id2").val(item.id);
-          $("#name2").val(item.name);
-          $("#email2").val(item.email);
-          $("#age2").val(item.age);
+          $("#name3").val(item.name);
+          $("#email").val(item.email);
+          $("#age").val(item.age);
   
         },
         
@@ -111,35 +116,35 @@ function cargarDatosCliente(id){
 }
 
 //Manejador PUT
-function actualizarCliente(){
-    var elemento={
-        id:$("#id2").val(),
-        name:$("#name2").val(),
-        email:$("#email2").val(),
-        age:$("#age2").val()
+function actualizarCliente(idElemento){
+    let elemento={
+        idClient:idElemento,
+        name:$("#name3").val(),
+        email:$("#email").val(),
+        age:$("#age").val()
     }
 
-    var dataToSend = JSON.stringify(elemento);
+    console.log(elemento);
+    let dataToSend = JSON.stringify(elemento);
 
     $.ajax({
         datatype:'json',
         data:dataToSend,
-        contentType:"application/JSON",
-        url:"https://g4f023f8afe10e5-bdskate.adb.sa-saopaulo-1.oraclecloudapps.com/ords/admin/client/client",
+        contentType: "application/json",
+        url:"http://168.138.247.22:80/api/Client/update",
+        //url:"http://localhost:8080/api/Client/update",
         type:"PUT",
         
         success:function(response){
             //console.log(response);
             $("#miListaClient").empty();
-            listarCliente();
             alert("se ha Actualizado Correctamente!")
 
             //Limpiar Campos
-            $("#resultado2").empty();
-            $("#id2").val("");
-            $("#name2").val("");
-            $("#email2").val("");
-            $("#age2").val("");
+            $("#resultado3").empty();
+            $("#name3").val("");
+            $("#email").val("");
+            $("#age").val("");
             
 
         },

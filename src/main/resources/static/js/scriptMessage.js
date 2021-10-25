@@ -11,12 +11,13 @@ function agregarMensaje(){
         contentType: "application/json",
         data:dataToSend,
         url:"http://168.138.247.22:80/api/Message/save",
+        //url:"http://localhost:8080/api/Message/save",
         type:"POST",
         
         success:function(response){
             console.log(response);
             //Limpiar Campos
-            $("#resultado3").empty();
+            $("#resultado4").empty();
             $("#messageText").val("");
 
             //Listar Tabla
@@ -32,6 +33,7 @@ function agregarMensaje(){
 function listarMensaje(){
     $.ajax({
         url:"http://168.138.247.22:80/api/Message/all",
+        //url:"http://localhost:8080/api/Message/all",
         type:"GET",
         datatype:"JSON",
         success:function(response){
@@ -41,10 +43,11 @@ function listarMensaje(){
                 for(i=0; i<misItems.length; i++){
                     console.log(misItems[i]);
                     $("#miListaMessage").append("<tr>");
-                    $("#miListaMessage").append("<td>"+misItems[i].idMessage+"</td>");
+                    //$("#miListaMessage").append("<td>"+misItems[i].idMessage+"</td>");
                     $("#miListaMessage").append("<td>"+misItems[i].messageText+"</td>");
-                    $("#miListaMessage").append('<td><button class = "botonMessage2" onclick="borrarMensaje('+misItems[i].id+')">Borrar Mensaje!</button></td>');
-                    $("#miListaMessage").append('<td><button class = "botonMessage2" onclick="cargarDatosMensaje('+misItems[i].id+')">Cargar Mensaje!</button></td>');
+                    $("#miListaMessage").append('<td><button class = "botonMessage2" onclick="borrarMensaje('+misItems[i].idMessage+')">Borrar Mensaje!</button></td>');
+                    $("#miListaMessage").append('<td><button class = "botonMessage2" onclick="cargarDatosMensaje('+misItems[i].idMessage+')">Editar Mensaje!</button></td>');
+                    $("#miListaMessage").append('<td><button class = "botonMessage2" onclick="actualizarMensaje('+misItems[i].idMessage+')">Actualizar Mensaje!</button></td>');
                     $("#miListaMessage").append("</tr>");
                 }
             }
@@ -55,22 +58,24 @@ function listarMensaje(){
 
 //Manejador DELETE
 function borrarMensaje(idElemento){
-    var elemento={
+    let elemento={
         id:idElemento
     }
 
-    var dataToSend = JSON.stringify(elemento);
+    let dataToSend = JSON.stringify(elemento);
 
     $.ajax(
         {
             dataType: 'json',
             data:dataToSend,
-            url:"https://g4f023f8afe10e5-bdskate.adb.sa-saopaulo-1.oraclecloudapps.com/ords/admin/message/message",
+            url:"http://168.138.247.22:80/api/Message/"+idElemento,
+            //url:"http://localhost:8080/api/Message/"+idElemento,
             type:'DELETE',
             contentType:"application/JSON",
             success:function(response){
+                console.log(response);
                 $("#miListaMessage").empty();
-                listarMensaje();
+                //listarMensaje();
                 alert("se ha Eliminado Correctamente!")
             },
 
@@ -84,15 +89,15 @@ function borrarMensaje(idElemento){
 function cargarDatosMensaje(id){
     $.ajax({
         dataType: 'json',
-        url:"https://g4f023f8afe10e5-bdskate.adb.sa-saopaulo-1.oraclecloudapps.com/ords/admin/message/message/"+id,
+        url:"http://168.138.247.22:80/api/Message/"+id,
+        //url:"http://localhost:8080/api/Message/"+id,
         type:'GET',
         
         success:function(response) {
           console.log(response);
-          var item=response.items[0];
-  
-          $("#id3").val(item.id);
-          $("#messagetext").val(item.messagetext);
+          var item=response;
+           
+          $("#messageText").val(item.messageText);
         },
         
         error: function(jqXHR, textStatus, errorThrown) {
@@ -102,32 +107,33 @@ function cargarDatosMensaje(id){
 }
 
 //Manejador PUT
-function actualizarMensaje(){
+function actualizarMensaje(idElemento){
     var elemento={
-        id:$("#id3").val(),
-        messagetext:$("#messagetext").val(),
+        idMessage:idElemento,
+        messageText:$("#messageText").val(),
 
     }
 
+    console.log(elemento);
     var dataToSend = JSON.stringify(elemento);
 
     $.ajax({
         datatype:'json',
         data:dataToSend,
         contentType:"application/JSON",
-        url:"https://g4f023f8afe10e5-bdskate.adb.sa-saopaulo-1.oraclecloudapps.com/ords/admin/message/message",
+        url:"http://168.138.247.22:80/api/Message/update",
+        //url:"http://localhost:8080/api/Message/update",
         type:"PUT",
         
         success:function(response){
-            //console.log(response);
+            console.log(response);
             $("#miListaMessage").empty();
-            listarMensaje();
             alert("se ha Actualizado Correctamente!")
 
             //Limpiar Campos
-            $("#resultado3").empty();
+            $("#resultado4").empty();
             $("#id3").val("");
-            $("#messagetext").val("");
+            $("#messageText").val("");
 
         },
         error: function(jqXHR, textStatus, errorThrown){}

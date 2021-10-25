@@ -35,4 +35,29 @@ public class serviciosCategory {
         }
     }
     
+    public Category update(Category category){
+        if (category.getId()!=null){
+            Optional<Category> evt = metodosCrud.getCategory(category.getId());
+            if (!evt.isEmpty()){
+                if (category.getDescription()!=null){
+                    evt.get().setDescription(category.getDescription());
+                }
+                if (category.getName()!=null){
+                    evt.get().setName(category.getName());
+                }
+                return metodosCrud.save(evt.get());
+            }
+        }
+        return category;
+    }
+
+
+    public boolean deleteCategory(int id){
+        Boolean del = getCategory(id).map(category -> {
+            metodosCrud.delete(category);
+            return true;
+        }).orElse(false);
+        return del;
+    }
+    
 }
