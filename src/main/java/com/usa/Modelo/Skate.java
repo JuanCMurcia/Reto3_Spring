@@ -26,14 +26,26 @@ import javax.persistence.Table;
  */
 public class Skate implements Serializable{
     /**
-     * Declaracion de Variables
+     * Declaracion de Variable Id Primaria
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    /**
+     * Declaracion de Variable Nombre "name"
+     */
     private String name;
+    /**
+     * Declaracion de Variable Marca "brand"
+     */
     private String brand;
+    /**
+     * Declaracion de Variable año "year"
+     */
     private Integer year;
+    /**
+     * Declaracion de Variable descripcion
+     */
     private String description;
     
     /**
