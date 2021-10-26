@@ -1,65 +1,66 @@
 //Manejador "POST"
-function agregarMensaje(){
-    let elemento={
-        messageText:$("#messageText").val(),
+function agregarMensaje() {
+    let elemento = {
+        messageText: $("#messageText").val(),
     }
 
     var dataToSend = JSON.stringify(elemento);
 
     $.ajax({
-        datatype:'json',
+        datatype: 'json',
         contentType: "application/json",
-        data:dataToSend,
+        data: dataToSend,
         url:"http://168.138.247.22:80/api/Message/save",
-        //url:"http://localhost:8080/api/Message/save",
-        type:"POST",
-        
-        success:function(response){
+        //url: "http://localhost:8080/api/Message/save",
+        type: "POST",
+
+        success: function (response) {
             console.log(response);
             //Limpiar Campos
             $("#resultado4").empty();
             $("#messageText").val("");
 
             //Listar Tabla
-            listarMensaje();
+
             alert("¡Se ha guardado Correctamente!")
         },
-        error: function(jqXHR, textStatus, errorThrown){}
+        error: function (jqXHR, textStatus, errorThrown) {
+            alert("No se guardo Correctamente!")
+        }
     });
 }
 
 
 //Manejador GET
-function listarMensaje(){
+function listarMensaje() {
     $.ajax({
         url:"http://168.138.247.22:80/api/Message/all",
-        //url:"http://localhost:8080/api/Message/all",
-        type:"GET",
-        datatype:"JSON",
-        success:function(response){
-            
-            for(i=0; i<response.length;i++){
-                var misItems=response;
-                for(i=0; i<misItems.length; i++){
+        //url: "http://localhost:8080/api/Message/all",
+        type: "GET",
+        datatype: "JSON",
+        success: function (response) {
+
+            for (i = 0; i < response.length; i++) {
+                var misItems = response;
+                for (i = 0; i < misItems.length; i++) {
                     console.log(misItems[i]);
                     $("#miListaMessage").append("<tr>");
-                    //$("#miListaMessage").append("<td>"+misItems[i].idMessage+"</td>");
-                    $("#miListaMessage").append("<td>"+misItems[i].messageText+"</td>");
-                    $("#miListaMessage").append('<td><button class = "botonMessage2" onclick="borrarMensaje('+misItems[i].idMessage+')">Borrar Mensaje!</button></td>');
-                    $("#miListaMessage").append('<td><button class = "botonMessage2" onclick="cargarDatosMensaje('+misItems[i].idMessage+')">Editar Mensaje!</button></td>');
-                    $("#miListaMessage").append('<td><button class = "botonMessage2" onclick="actualizarMensaje('+misItems[i].idMessage+')">Actualizar Mensaje!</button></td>');
+                    $("#miListaMessage").append("<td>" + misItems[i].messageText + "</td>");
+                    $("#miListaMessage").append('<td><button class = "botonMessage2" onclick="borrarMensaje(' + misItems[i].idMessage + ')">Borrar Mensaje!</button></td>');
+                    $("#miListaMessage").append('<td><button class = "botonMessage2" onclick="cargarDatosMensaje(' + misItems[i].idMessage + ')">Editar Mensaje!</button></td>');
+                    $("#miListaMessage").append('<td><button class = "botonMessage2" onclick="actualizarMensaje(' + misItems[i].idMessage + ')">Actualizar Mensaje!</button></td>');
                     $("#miListaMessage").append("</tr>");
                 }
             }
         },
-        error: function(jqXHR, textStatus, errorThrown){}
-        });
+        error: function (jqXHR, textStatus, errorThrown) { }
+    });
 }
 
 //Manejador DELETE
-function borrarMensaje(idElemento){
-    let elemento={
-        id:idElemento
+function borrarMensaje(idElemento) {
+    let elemento = {
+        id: idElemento
     }
 
     let dataToSend = JSON.stringify(elemento);
@@ -67,50 +68,50 @@ function borrarMensaje(idElemento){
     $.ajax(
         {
             dataType: 'json',
-            data:dataToSend,
+            data: dataToSend,
             url:"http://168.138.247.22:80/api/Message/"+idElemento,
-            //url:"http://localhost:8080/api/Message/"+idElemento,
-            type:'DELETE',
-            contentType:"application/JSON",
-            success:function(response){
+            //url: "http://localhost:8080/api/Message/" + idElemento,
+            type: 'DELETE',
+            contentType: "application/JSON",
+            success: function (response) {
                 console.log(response);
                 $("#miListaMessage").empty();
-                //listarMensaje();
+
                 alert("se ha Eliminado Correctamente!")
             },
 
-            error: function(jqXHR, textStatus, errorThrown){
-
+            error: function (jqXHR, textStatus, errorThrown) {
+                alert("No se Elimino Correctamente!")
             }
         });
-    }
+}
 
 //Capturar informacion para Actualizar
-function cargarDatosMensaje(id){
+function cargarDatosMensaje(id) {
     $.ajax({
         dataType: 'json',
         url:"http://168.138.247.22:80/api/Message/"+id,
-        //url:"http://localhost:8080/api/Message/"+id,
-        type:'GET',
-        
-        success:function(response) {
-          console.log(response);
-          var item=response;
-           
-          $("#messageText").val(item.messageText);
+        //url: "http://localhost:8080/api/Message/" + id,
+        type: 'GET',
+
+        success: function (response) {
+            console.log(response);
+            var item = response;
+
+            $("#messageText").val(item.messageText);
         },
-        
-        error: function(jqXHR, textStatus, errorThrown) {
-              
+
+        error: function (jqXHR, textStatus, errorThrown) {
+
         }
     });
 }
 
 //Manejador PUT
-function actualizarMensaje(idElemento){
-    var elemento={
-        idMessage:idElemento,
-        messageText:$("#messageText").val(),
+function actualizarMensaje(idElemento) {
+    var elemento = {
+        idMessage: idElemento,
+        messageText: $("#messageText").val(),
 
     }
 
@@ -118,14 +119,14 @@ function actualizarMensaje(idElemento){
     var dataToSend = JSON.stringify(elemento);
 
     $.ajax({
-        datatype:'json',
-        data:dataToSend,
-        contentType:"application/JSON",
+        datatype: 'json',
+        data: dataToSend,
+        contentType: "application/JSON",
         url:"http://168.138.247.22:80/api/Message/update",
-        //url:"http://localhost:8080/api/Message/update",
-        type:"PUT",
-        
-        success:function(response){
+        //url: "http://localhost:8080/api/Message/update",
+        type: "PUT",
+
+        success: function (response) {
             console.log(response);
             $("#miListaMessage").empty();
             alert("se ha Actualizado Correctamente!")
@@ -136,6 +137,8 @@ function actualizarMensaje(idElemento){
             $("#messageText").val("");
 
         },
-        error: function(jqXHR, textStatus, errorThrown){}
+        error: function (jqXHR, textStatus, errorThrown) {
+            alert("No se Actualizo Correctamente!")
+        }
     });
 }

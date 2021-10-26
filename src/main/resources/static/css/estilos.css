@@ -127,13 +127,14 @@ hr{
 }
 
 .form-Skate .botonSkate2{
-    width: 60%;
+    width: 100%;
+    border: 5px;
     padding: 5px;
-    margin: 5px;
+    margin-top: 5px;
     border-radius: 10px;
     border: 1px solid #0d3283;
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 12px;
+    font-size: 15px;
 }
 
 
@@ -171,11 +172,10 @@ hr{
 }
 
 .form-Client .botonCliente{
-    width: 90%;
-    border: 10px;
+    width: 100%;
+    border: 5px;
     padding: 5px;
-    margin-left: 25px;
-    margin-bottom: 5px;
+    margin-top: 5px;
     border-radius: 10px;
     border: 1px solid #0d3283;
     font-family: Arial, Helvetica, sans-serif;

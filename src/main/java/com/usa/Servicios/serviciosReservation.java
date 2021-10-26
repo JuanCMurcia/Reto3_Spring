@@ -15,6 +15,9 @@ import org.springframework.stereotype.Service;
 @Service
 public class serviciosReservation {
 
+    /**
+     * Metodo llamado a Repositorio Reservacion
+     */
     @Autowired
     private ReservationRepositorio metodosCrud;
 
@@ -86,13 +89,13 @@ public class serviciosReservation {
     }
 
     /**
-     * Metodo Borrar datos de la lista
+     * Metodo Borrar Datos
      *
-     * @param id
+     * @param idReservation
      * @return
      */
-    public boolean deleteReservation(int id) {
-        Boolean del = getReservation(id).map(reservation -> {
+    public boolean deleteReservation(int idReservation) {
+        Boolean del = getReservation(idReservation).map(reservation -> {
             metodosCrud.delete(reservation);
             return true;
         }).orElse(false);
