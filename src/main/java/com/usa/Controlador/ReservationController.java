@@ -1,6 +1,8 @@
 
 package com.usa.Controlador;
 
+import com.usa.Controlador.custom.CountClient;
+import com.usa.Controlador.custom.StatusAmount;
 import com.usa.Modelo.Reservation;
 import com.usa.Servicios.serviciosReservation;
 import java.util.List;
@@ -53,5 +55,20 @@ public class ReservationController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public boolean delete(@PathVariable("id") int id){
         return servicios.deleteReservation(id);
+    }
+    
+    @GetMapping("/report-status")
+    public StatusAmount getStatusAmount(){
+        return servicios.getStatusReport();
+    }
+
+    @GetMapping("/report-clients")
+    public List<CountClient> getCountClient(){
+        return servicios.getTopClient();
+    }
+
+    @GetMapping("/report-dates/{dateOne}/{dateTwo}")
+    public List<Reservation> getDatesReport(@PathVariable("dateOne") String dato1, @PathVariable("dateTwo") String dato2){
+        return servicios.getReservationPeriod(dato1, dato2);
     }
 }

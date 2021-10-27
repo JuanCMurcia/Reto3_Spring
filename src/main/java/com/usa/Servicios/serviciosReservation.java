@@ -1,7 +1,13 @@
 package com.usa.Servicios;
 
+import com.nimbusds.jose.shaded.json.parser.ParseException;
+import com.usa.Controlador.custom.CountClient;
+import com.usa.Controlador.custom.StatusAmount;
 import com.usa.Modelo.Reservation;
 import com.usa.Repositorio.ReservationRepositorio;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -100,5 +106,48 @@ public class serviciosReservation {
             return true;
         }).orElse(false);
         return del;
+    }
+    
+    /**
+     * Conteo Clientes
+     * @return 
+     */
+    public List<CountClient> getTopClient(){
+        return metodosCrud.getTopClient();
+    }
+
+    /**
+     * Cuenta cuantos Status de Reservations hay de completed y cancelled
+     * @return new StatusAmount
+     */
+    public StatusAmount getStatusReport(){
+        List<Reservation> completed = metodosCrud.getReservationByStatus("completed");
+        List<Reservation> cancelled = metodosCrud.getReservationByStatus("cancelled");
+
+        return new StatusAmount(completed.size(), cancelled.size());
+
+    }
+
+    /**
+     * Entrega una fecha especifica
+     * @param dato1 = dateOne
+     * @param dato2 = dateTwo
+     * @return new ArrayList<>()
+     */
+    public List<Reservation> getReservationPeriod(String dato1, String dato2){
+        SimpleDateFormat parser = new SimpleDateFormat("yyyy-MM-dd");
+        Date dateOne = new Date();
+        Date dateTwo = new Date();
+
+        try {
+            dateOne = parser.parse(dato1);
+            dateTwo = parser.parse(dato2);
+        }catch (Exception evt){
+        }
+        if (dateOne.before(dateTwo)){
+            return metodosCrud.getReservationByPeriod(dateOne, dateOne);
+        }else {
+            return new ArrayList<>();
+        }
     }
 }
