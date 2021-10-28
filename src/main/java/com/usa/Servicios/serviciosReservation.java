@@ -1,6 +1,5 @@
 package com.usa.Servicios;
 
-import com.nimbusds.jose.shaded.json.parser.ParseException;
 import com.usa.Controlador.custom.CountClient;
 import com.usa.Controlador.custom.StatusAmount;
 import com.usa.Modelo.Reservation;
@@ -144,9 +143,8 @@ public class serviciosReservation {
             dateTwo = parser.parse(dato2);
         }catch (java.text.ParseException evt){
             evt.printStackTrace();
-        }
-        if (dateOne.before(dateTwo)){
-            return metodosCrud.getReservationByPeriod(dateOne, dateOne);
+        }if (dateOne.before(dateTwo)){
+            return metodosCrud.getReservationByPeriod(dateOne, dateTwo);
         }else {
             return new ArrayList<>();
         }

@@ -7,11 +7,15 @@ import java.util.List;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
+/**
+ * 
+ * @author starp
+ */
 
 public interface interfaceReservation extends CrudRepository<Reservation, Integer>{
     
     //JPQL
-    @Query("SELECT c.client, COUNT(c.client) FROM Reservation AS c group by c.client order by COUNT(c.client) DESC ")
+    @Query("SELECT c.client, COUNT(c.client) from Reservation AS c group by c.client order by COUNT(c.client)DESC")
     public List<Object[]> countTotalReservationByClient();
 
     //QUERY METHODS!
