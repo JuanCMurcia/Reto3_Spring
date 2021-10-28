@@ -142,7 +142,8 @@ public class serviciosReservation {
         try {
             dateOne = parser.parse(dato1);
             dateTwo = parser.parse(dato2);
-        }catch (Exception evt){
+        }catch (java.text.ParseException evt){
+            evt.printStackTrace();
         }
         if (dateOne.before(dateTwo)){
             return metodosCrud.getReservationByPeriod(dateOne, dateOne);
