@@ -84,7 +84,7 @@ function reportDate(){
     
 
         $.ajax({
-            url:"http://168.138.247.22:80/api/Reservation/report-clients/"+fechaInicio+"/"+fechaCierre,
+            url:"http://168.138.247.22:80/api/Reservation/report-dates/"+fechaInicio+"/"+fechaCierre,
             //url:"http://localhost:8080/api/Reservation/report-dates/"+fechaInicio+"/"+fechaCierre,
             type:"GET",
             datatype:"JSON",
