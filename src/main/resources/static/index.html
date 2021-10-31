@@ -91,10 +91,7 @@
                         <button class="botonCategory" onclick="listarCategory()">Listar!</button>
                         <button class="botonCategory" onclick="actualizarCategory()">Actualizar!</button>
                         <br>
-                        <script type="text/javascript">
-                            window.onload = autoInicioCategory();
-                        </script>
-                    
+                                            
                 </section>
 
                 <!------------------------------------MENU SKATE------------------------------------------>
@@ -113,6 +110,10 @@
                     <label>DESCRIPTION:</label>
                     <input class="controlSkate" type="text" id="description2" placeholder="escribe la descripcion de la patineta 'Skate'" ><br>
                     
+                    <script type="text/javascript">
+                        window.onload = autoInicioCategory();
+                    </script>
+
                     <label>Seleccionar Categoria</label><br>
                     <select id="select-category"></select>
                     <br>
@@ -126,9 +127,7 @@
                     <button class="botonSkate" onclick="listarSkate()">Listar!</button>
                     <button class="botonSkate" onclick="actualizar()">Actualizar!</button>
                     <br>
-                    <script type="text/javascript">
-                        window.onload = autoInicioSkate();
-                    </script>
+                    
 
                 </section>
 
@@ -158,9 +157,7 @@
                     <button class="botonCliente" onclick="listarCliente()">Listar!</button>
                     <button class="botonCliente" onclick="actualizarCliente()">Actualizar!</button>
                     <br>
-                    <script type="text/javascript">
-                        window.onload = autoInicioClient();
-                    </script>
+                    
                 </section>
 
                 <!------------------------------------MENU MESSAGE-------------------------------------------->
@@ -205,6 +202,12 @@
                     <label>STATUS: Estado de la Reservacion "completed / cancelled</label>
                     <input class="controlReservation" type="text" id="status" placeholder="escriba completed o cancelled para el estado de la Reservacion ">
                     <br>
+                    <script type="text/javascript">
+                        window.onload = autoInicioClient();
+                    </script>
+                    <script type="text/javascript">
+                        window.onload = autoInicioSkate();
+                    </script>
                     <label>Seleccionar Skate</label>
                     <label>Seleccionar Cliente</label><br>
                     <select id="select-skate"></select>
@@ -215,6 +218,7 @@
                     <h2>Lista de Reservaciones</h2>
                     <div id="miListaReservation"></div>
                     <br>
+                    
                     <button class="botonReservation" onclick="listarReservation()">Listar!</button>
                     <button class="botonReservation" onclick="actualizarReservation()">Actualizar!</button>
                     <br>

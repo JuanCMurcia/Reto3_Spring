@@ -1,25 +1,3 @@
-function autoInicioCategory() {
-    location.reload(true);
-    console.log("Se esta ejecutando el autoinicio de Category...");
-    $.ajax({
-        url:"http://168.138.247.22:80/api/Category/all",
-        //url: "http://localhost:8080/api/Category/all",
-        type: "GET",
-        datatype: "JSON",
-        success: function (response) {
-
-            let $select = $("#select-category");
-            $.each(response, function (id, name) {
-                $select.append('<option value=' + name.id + '>' + name.name + '</option>');
-                console.log("select " + name.id);
-            });
-
-        },
-        error: function (jqXHR, textStatus, errorThrown) { }
-    });
-}
-setInterval("autoInicioCategory()",10000)
-
 //Manejador "POST"
 function agregarSkate() {
 
@@ -216,6 +194,27 @@ function actualizar(idElemento) {
             }
         });
     }
+}
+
+
+function autoInicioSkate() {
+    console.log("Se esta ejecutando el autoinicio de Skate...");
+    $.ajax({
+        url:"http://168.138.247.22:80/api/Skate/all",
+        //url: "http://localhost:8080/api/Skate/all",
+        type: "GET",
+        datatype: "JSON",
+        success: function (response) {
+
+            let $select = $("#select-skate");
+            $.each(response, function (id, name) {
+                $select.append('<option value=' + name.id + '>' + name.name + '</option>');
+                console.log("select " + name.id);
+            });
+
+        },
+        error: function (jqXHR, textStatus, errorThrown) { }
+    });
 }
 
 
