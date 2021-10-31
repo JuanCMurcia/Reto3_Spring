@@ -1,3 +1,47 @@
+function autoInicioSkate() {
+    location.reload(true);
+    console.log("Se esta ejecutando el autoinicio de Skate...");
+    $.ajax({
+        url:"http://168.138.247.22:80/api/Skate/all",
+        //url: "http://localhost:8080/api/Skate/all",
+        type: "GET",
+        datatype: "JSON",
+        success: function (response) {
+
+            let $select = $("#select-skate");
+            $.each(response, function (id, name) {
+                $select.append('<option value=' + name.id + '>' + name.name + '</option>');
+                console.log("select " + name.id);
+            });
+
+        },
+        error: function (jqXHR, textStatus, errorThrown) { }
+    });
+}
+setInterval("autoInicioSkate()",10000)
+
+function autoInicioClient() {
+    location.reload(true);
+    console.log("Se esta ejecutando el autoinicio de Client...");
+    $.ajax({
+        url:"http://168.138.247.22:80/api/Client/all",
+        //url: "http://localhost:8080/api/Client/all",
+        type: "GET",
+        datatype: "JSON",
+        success: function (response) {
+
+            let $select = $("#select-client");
+            $.each(response, function (id, name) {
+                $select.append('<option value=' + name.idClient + '>' + name.name + '</option>');
+                console.log("select " + name.idClient);
+            });
+
+        },
+        error: function (jqXHR, textStatus, errorThrown) { }
+    });
+}
+setInterval("autoInicioClient()",10000)
+
 //Manejador "POST"
 function agregarReservation() {
     
@@ -183,42 +227,4 @@ function actualizarReservation(idElemento) {
     }
 }
 
-function autoInicioSkate() {
-    console.log("Se esta ejecutando el autoinicio de Skate...");
-    $.ajax({
-        url:"http://168.138.247.22:80/api/Skate/all",
-        //url: "http://localhost:8080/api/Skate/all",
-        type: "GET",
-        datatype: "JSON",
-        success: function (response) {
 
-            let $select = $("#select-skate");
-            $.each(response, function (id, name) {
-                $select.append('<option value=' + name.id + '>' + name.name + '</option>');
-                console.log("select " + name.id);
-            });
-
-        },
-        error: function (jqXHR, textStatus, errorThrown) { }
-    });
-}
-
-function autoInicioClient() {
-    console.log("Se esta ejecutando el autoinicio de Client...");
-    $.ajax({
-        url:"http://168.138.247.22:80/api/Client/all",
-        //url: "http://localhost:8080/api/Client/all",
-        type: "GET",
-        datatype: "JSON",
-        success: function (response) {
-
-            let $select = $("#select-client");
-            $.each(response, function (id, name) {
-                $select.append('<option value=' + name.idClient + '>' + name.name + '</option>');
-                console.log("select " + name.idClient);
-            });
-
-        },
-        error: function (jqXHR, textStatus, errorThrown) { }
-    });
-}
