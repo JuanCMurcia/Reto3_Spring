@@ -127,7 +127,65 @@
     font-size: 15px;
 }
 
-/*pie de pagina*/
-.pie{
-    margin-top: 200px;
+
+/*Estilos Reports*/
+.form-Report{
+    width: 800px;
+    background: #297ed3;
+    padding: 20px;
+    margin: auto;
+    margin-top: 20px;
+    border-radius: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    box-shadow: 5px 1px 10px #0d3283;
 }
+
+.form-Report h2{
+    font-size: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.controlReporte{
+    width: 100%;
+    background: #cfe0f1;
+    padding: 5px;
+    border-radius: 4px;
+    margin-top: 5px;
+    margin-bottom: 16px;
+    border: 1px solid #0d3283;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    
+}
+
+.form-Report .botonReporte{
+    width: 90%;
+    border: 10px;
+    padding: 5px;
+    margin-left: 25px;
+    margin-bottom: 5px;
+    border-radius: 10px;
+    border: 1px solid #0d3283;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+}
+
+.tablaReporte{
+    width: 100%;
+    padding: 2px;
+}
+
+.form-Report .botonReporte2{
+    width: 100%;
+    border: 5px;
+    padding: 5px;
+    margin-top: 5px;
+    border-radius: 10px;
+    border: 1px solid #0d3283;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+}
+
