@@ -114,8 +114,8 @@
                         window.onload = autoInicioCategory();
                     </script>
 
-                    <label>Seleccionar Categoria</label><br>
-                    <select id="select-category"></select>
+                    <label>Seleccionar Categoria :</label>
+                    <select id="select-category">Categoria</select>
                     <br>
                     <br>
                     <button class="botonSkate" onclick="agregarSkate()">Agregar!</button>
@@ -170,9 +170,19 @@
 
                     <label>NAME:</label>
                     <input class="controlMessage" type="text" id="messageText" placeholder="escribe el mensaje valorativo de la Patineta 'Skate'"><br>
-                    
                     <br>
-                
+                    <script type="text/javascript">
+                        window.onload = autoInicioRelacionClient();
+                    </script>
+                    <script type="text/javascript">
+                        window.onload = autoInicioRelacionSkate();
+                    </script>
+                    <label>Seleccionar Skate :</label>
+                    <select id="select-skate"></select>
+                    <label>Seleccionar Cliente :</label>
+                    <select id="select-client"></select>
+                    <br>
+                    <br>
                     <button class="botonMessage" onclick="agregarMensaje()">Agregar!</button>
                     <br>
                     <h2>Lista de Mensajes</h2>
@@ -199,19 +209,25 @@
                     <input class="controlReservation" type="date" id="startDate" placeholder="startDate"><br>
                     <label>DEVOLUTIONDATE: Escoja la Fecha Devolucion de la Reservacion</label>
                     <input class="controlReservation" type="date" id="devolutionDate" placeholder="devolutionDate"><br>
-                    <label>STATUS: Estado de la Reservacion "completed / cancelled</label>
-                    <input class="controlReservation" type="text" id="status" placeholder="escriba completed o cancelled para el estado de la Reservacion ">
+                    <label>STATUS: Seleccione el Estado de la Reservacion "completed / cancelled</label><br>
+                    <select name="status" id="status">
+                        <option value="completed">completed</option>
+                        <option value="cancelled">cancelled</option>
+                     </select>
+                    <br>
                     <br>
                     <script type="text/javascript">
-                        window.onload = autoInicioClient();
+                        window.onload = autoInicioRelacionClientII();
                     </script>
                     <script type="text/javascript">
-                        window.onload = autoInicioSkate();
+                        window.onload = autoInicioRelacionSkateII();
                     </script>
-                    <label>Seleccionar Skate</label>
-                    <label>Seleccionar Cliente</label><br>
-                    <select id="select-skate"></select>
-                    <select id="select-client"></select>
+                    <label>Seleccionar Skate :</label>
+                    <select id="select-skate-II"></select>
+                    <label>Seleccionar Cliente :</label>
+                    <select id="select-client-II"></select>
+                    <br>
+                    
                     <br>
                     <button class="botonReservation" onclick="agregarReservation()">Agregar!</button>
                     <br>

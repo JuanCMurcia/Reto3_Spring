@@ -7,10 +7,12 @@ $(document).ready(function(){
     $('ul.tabs li a').click(function(){
         $('ul.tabs li a').removeClass('active');
         $(this).addClass('active');
+
         $('.tabs-container section').hide();
 
         var activeTab = $(this).attr('href');
         $(activeTab).show();
+        
         return false;
     });
 });

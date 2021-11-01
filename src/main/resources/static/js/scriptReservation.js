@@ -1,3 +1,46 @@
+//Cargar los datos del Select "Client"
+function autoInicioRelacionClientII() {
+    
+    console.log("Se esta ejecutando el autoinicio de Client...");
+    $.ajax({
+        url:"http://168.138.247.22:80/api/Client/all",
+        //url: "http://localhost:8080/api/Client/all",
+        type: "GET",
+        datatype: "JSON",
+        success: function (response) {
+
+            let $select = $("#select-client-II");
+            $.each(response, function (id, name) {
+                $select.append('<option value=' + name.idClient + '>' + name.name + '</option>');
+                console.log("select " + name.idClient);
+            });
+
+        },
+        error: function (jqXHR, textStatus, errorThrown) { }
+    });
+}
+
+//Cargar los Datos del Select "Skate"
+function autoInicioRelacionSkateII() {
+    
+    console.log("Se esta ejecutando el autoinicio de Skate...");
+    $.ajax({
+        url:"http://168.138.247.22:80/api/Skate/all",
+        //url: "http://localhost:8080/api/Skate/all",
+        type: "GET",
+        datatype: "JSON",
+        success: function (response) {
+
+            let $select = $("#select-skate-II");
+            $.each(response, function (id, name) {
+                $select.append('<option value=' + name.id + '>' + name.name + '</option>');
+                console.log("select " + name.id);
+            });
+
+        },
+        error: function (jqXHR, textStatus, errorThrown) { }
+    });
+}
 
 
 //Manejador "POST"
@@ -185,44 +228,3 @@ function actualizarReservation(idElemento) {
     }
 }
 
-function autoInicioClient() {
-    
-    console.log("Se esta ejecutando el autoinicio de Client...");
-    $.ajax({
-        url:"http://168.138.247.22:80/api/Client/all",
-        //url: "http://localhost:8080/api/Client/all",
-        type: "GET",
-        datatype: "JSON",
-        success: function (response) {
-
-            let $select = $("#select-client");
-            $.each(response, function (id, name) {
-                $select.append('<option value=' + name.idClient + '>' + name.name + '</option>');
-                console.log("select " + name.idClient);
-            });
-
-        },
-        error: function (jqXHR, textStatus, errorThrown) { }
-    });
-}
-
-function autoInicioSkate() {
-    
-    console.log("Se esta ejecutando el autoinicio de Skate...");
-    $.ajax({
-        url:"http://168.138.247.22:80/api/Skate/all",
-        //url: "http://localhost:8080/api/Skate/all",
-        type: "GET",
-        datatype: "JSON",
-        success: function (response) {
-
-            let $select = $("#select-skate");
-            $.each(response, function (id, name) {
-                $select.append('<option value=' + name.id + '>' + name.name + '</option>');
-                console.log("select " + name.id);
-            });
-
-        },
-        error: function (jqXHR, textStatus, errorThrown) { }
-    });
-}

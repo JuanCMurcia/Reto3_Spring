@@ -1,3 +1,66 @@
+//Caraga la informacion en el select "Client"
+function autoInicioRelacionClient() {
+    console.log("Se esta ejecutando el autoinicio de Client...");
+    $.ajax({
+        url:"http://168.138.247.22:80/api/Client/all",
+        //url: "http://localhost:8080/api/Client/all",
+        type: "GET",
+        datatype: "JSON",
+        success: function (response) {
+
+            let $select = $("#select-client");
+            $.each(response, function (id, name) {
+                $select.append('<option value=' + name.idClient + '>' + name.name + '</option>');
+                console.log("select " + name.idClient);
+            });
+
+        },
+        error: function (jqXHR, textStatus, errorThrown) { }
+    });
+}
+
+//Cargar datos del Select "Skate"
+function autoInicioRelacionSkate() {
+    console.log("Se esta ejecutando el autoinicio de Client...");
+    $.ajax({
+        url:"http://168.138.247.22:80/api/Skate/all",
+        //url: "http://localhost:8080/api/Skate/all",
+        type: "GET",
+        datatype: "JSON",
+        success: function (response) {
+
+            let $select = $("#select-skate");
+            $.each(response, function (id, name) {
+                $select.append('<option value=' + name.id + '>' + name.name + '</option>');
+                console.log("select " + name.id);
+            });
+
+        },
+        error: function (jqXHR, textStatus, errorThrown) { }
+    });
+}
+
+function autoInicioMessage() {
+    console.log("Se esta ejecutando el autoinicio de Client...");
+    $.ajax({
+        url:"http://168.138.247.22:80/api/Message/all",
+        //url: "http://localhost:8080/api/Message/all",
+        type: "GET",
+        datatype: "JSON",
+        success: function (response) {
+
+            let $select = $("#select-message");
+            $.each(response, function (id, name) {
+                $select.append('<option value=' + name.idMessage + '>' + name.messageText + '</option>');
+                console.log("select " + name.idMessage);
+            });
+
+        },
+        error: function (jqXHR, textStatus, errorThrown) { }
+    });
+}
+
+
 //Manejador "POST"
 function agregarMensaje() {
     
@@ -6,6 +69,8 @@ function agregarMensaje() {
     }else{    
         let elemento = {
             messageText: $("#messageText").val(),
+            skate:{id: +$("#select-skate").val()},
+            client:{idClient: +$("#select-client").val()},
         }
 
         var dataToSend = JSON.stringify(elemento);
@@ -55,11 +120,15 @@ function pintarRespuestaMensaje(response){
     let myTable="<table>"
     myTable+="<tr>";
         myTable+="<td>Mensaje</td>";
+        myTable+="<td>Patineta</td>";
+        myTable+="<td>Cliente</td>";
     "</tr>";
 
     for(i=0;i<response.length;i++){
     myTable+="<tr>";
         myTable+="<td>" + response[i].messageText + "</td>";
+        myTable+="<td>" + response[i].skate.name + "</td>";
+        myTable+="<td>" + response[i].client.name + "</td>";
         myTable+='<td><button class = "botonMessage2" onclick="borrarMensaje(' + response[i].idMessage + ')">Borrar Mensaje!</button></td>';
         myTable+='<td><button class = "botonMessage2" onclick="cargarDatosMensaje(' + response[i].idMessage + ')">Editar Mensaje!</button></td>';
         myTable+='<td><button class = "botonMessage2" onclick="actualizarMensaje(' + response[i].idMessage + ')">Actualizar Mensaje!</button></td>';
@@ -73,7 +142,7 @@ function pintarRespuestaMensaje(response){
 //Manejador DELETE
 function borrarMensaje(idElemento) {
     let elemento = {
-        id: idElemento
+        idMessage: idElemento
     }
 
     let dataToSend = JSON.stringify(elemento);
@@ -129,6 +198,8 @@ function actualizarMensaje(idElemento) {
         let elemento = {
             idMessage: idElemento,
             messageText: $("#messageText").val(),
+            skate:{id: +$("#select-skate").val()},
+            client:{idClient: +$("#select-client").val()},
 
         }
 
