@@ -1,5 +1,5 @@
 //Cargar los datos del Select "Client"
-function autoInicioRelacionClientII() {
+function autoInicioRelacionClient() {
     
     console.log("Se esta ejecutando el autoinicio de Client...");
     $.ajax({
@@ -9,7 +9,7 @@ function autoInicioRelacionClientII() {
         datatype: "JSON",
         success: function (response) {
 
-            let $select = $("#select-client-II");
+            let $select = $("#select-client");
             $.each(response, function (id, name) {
                 $select.append('<option value=' + name.idClient + '>' + name.name + '</option>');
                 console.log("select " + name.idClient);
@@ -21,7 +21,7 @@ function autoInicioRelacionClientII() {
 }
 
 //Cargar los Datos del Select "Skate"
-function autoInicioRelacionSkateII() {
+function autoInicioRelacionSkate() {
     
     console.log("Se esta ejecutando el autoinicio de Skate...");
     $.ajax({
@@ -31,7 +31,7 @@ function autoInicioRelacionSkateII() {
         datatype: "JSON",
         success: function (response) {
 
-            let $select = $("#select-skate-II");
+            let $select = $("#select-skate");
             $.each(response, function (id, name) {
                 $select.append('<option value=' + name.id + '>' + name.name + '</option>');
                 console.log("select " + name.id);
@@ -41,6 +41,7 @@ function autoInicioRelacionSkateII() {
         error: function (jqXHR, textStatus, errorThrown) { }
     });
 }
+
 
 
 //Manejador "POST"
@@ -54,7 +55,7 @@ function agregarReservation() {
             devolutionDate: $("#devolutionDate").val(),
             status: $("#status").val(),
             skate:{id: +$("#select-skate-II").val()},
-            client:{idClient: +$("#select-client-II").val()},
+            client:{idClient: +$("#select-client").val()},
             
         }
 
@@ -194,8 +195,8 @@ function actualizarReservation(idElemento) {
             startDate: $("#startDate").val(),
             devolutionDate: $("#devolutionDate").val(),
             status: $("#status").val(),
-            skate:{id: +$("#select-skate-II").val()},
-            client:{idClient: +$("#select-client-II").val()},
+            skate:{id: +$("#select-skate").val()},
+            client:{idClient: +$("#select-client").val()},
         }
 
         let dataToSend = JSON.stringify(elemento);

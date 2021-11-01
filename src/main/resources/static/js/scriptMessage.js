@@ -1,5 +1,5 @@
 //Caraga la informacion en el select "Client"
-function autoInicioRelacionClient() {
+function autoInicioRelacionClientII() {
     console.log("Se esta ejecutando el autoinicio de Client...");
     $.ajax({
         url:"http://168.138.247.22:80/api/Client/all",
@@ -8,7 +8,7 @@ function autoInicioRelacionClient() {
         datatype: "JSON",
         success: function (response) {
 
-            let $select = $("#select-client");
+            let $select = $("#select-client-II");
             $.each(response, function (id, name) {
                 $select.append('<option value=' + name.idClient + '>' + name.name + '</option>');
                 console.log("select " + name.idClient);
@@ -20,7 +20,7 @@ function autoInicioRelacionClient() {
 }
 
 //Cargar datos del Select "Skate"
-function autoInicioRelacionSkate() {
+function autoInicioRelacionSkateII() {
     console.log("Se esta ejecutando el autoinicio de Client...");
     $.ajax({
         url:"http://168.138.247.22:80/api/Skate/all",
@@ -29,7 +29,7 @@ function autoInicioRelacionSkate() {
         datatype: "JSON",
         success: function (response) {
 
-            let $select = $("#select-skate");
+            let $select = $("#select-skate-II");
             $.each(response, function (id, name) {
                 $select.append('<option value=' + name.id + '>' + name.name + '</option>');
                 console.log("select " + name.id);
@@ -70,7 +70,7 @@ function agregarMensaje() {
         let elemento = {
             messageText: $("#messageText").val(),
             skate:{id: +$("#select-skate").val()},
-            client:{idClient: +$("#select-client").val()},
+            client:{idClient: +$("#select-client-II").val()},
         }
 
         var dataToSend = JSON.stringify(elemento);
@@ -198,8 +198,8 @@ function actualizarMensaje(idElemento) {
         let elemento = {
             idMessage: idElemento,
             messageText: $("#messageText").val(),
-            skate:{id: +$("#select-skate").val()},
-            client:{idClient: +$("#select-client").val()},
+            skate:{id: +$("#select-skate-II").val()},
+            client:{idClient: +$("#select-client-II").val()},
 
         }
 
@@ -232,23 +232,5 @@ function actualizarMensaje(idElemento) {
     }
 }
 
-function autoInicioMessage() {
-    console.log("Se esta ejecutando el autoinicio de Client...");
-    $.ajax({
-        url:"http://168.138.247.22:80/api/Message/all",
-        //url: "http://localhost:8080/api/Message/all",
-        type: "GET",
-        datatype: "JSON",
-        success: function (response) {
 
-            let $select = $("#select-message");
-            $.each(response, function (id, name) {
-                $select.append('<option value=' + name.idMessage + '>' + name.messageText + '</option>');
-                console.log("select " + name.idMessage);
-            });
-
-        },
-        error: function (jqXHR, textStatus, errorThrown) { }
-    });
-}
 
