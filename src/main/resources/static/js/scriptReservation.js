@@ -53,8 +53,8 @@ function agregarReservation() {
             startDate: $("#startDate").val(),
             devolutionDate: $("#devolutionDate").val(),
             status: $("#status").val(),
-            skate:{id: +$("#select-skate").val()},
-            client:{idClient: +$("#select-client").val()},
+            skate:{id: +$("#select-skate-II").val()},
+            client:{idClient: +$("#select-client-II").val()},
             
         }
 
@@ -194,8 +194,8 @@ function actualizarReservation(idElemento) {
             startDate: $("#startDate").val(),
             devolutionDate: $("#devolutionDate").val(),
             status: $("#status").val(),
-            skate:{id: +$("#select-skate").val()},
-            client:{idClient: +$("#select-client").val()},
+            skate:{id: +$("#select-skate-II").val()},
+            client:{idClient: +$("#select-client-II").val()},
         }
 
         let dataToSend = JSON.stringify(elemento);
